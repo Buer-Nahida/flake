@@ -1,0 +1,1 @@
+{ dirContents, ... }: { imports = dirContents ./. [ ]; }

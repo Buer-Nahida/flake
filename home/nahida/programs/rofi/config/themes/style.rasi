@@ -1,0 +1,15 @@
+* {
+  background:     rgb(30, 30, 46);
+  background-alt: #252931;
+  foreground:     #A2D5AB;
+  selected:       @foreground;
+  active:         #9ECE6A;
+  urgent:         #F7768E;
+  button:         @background-alt;
+  // font: "FZLanTingYuan-DB-GBK 11";
+}
+
+configuration {
+  font: "JetBrainsMono Nerd Font 12";
+}
+

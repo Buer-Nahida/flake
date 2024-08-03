@@ -1,0 +1,3 @@
+ZSH_COMPDUMP="$HOME/.cache/.zcompdump-$HOST"
+# Powerlevel10k 配置文件
+POWERLEVEL9K_CONFIG_FILE="$ZDOTDIR/p10k.zsh"

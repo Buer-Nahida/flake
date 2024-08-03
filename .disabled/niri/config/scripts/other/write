@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+read -r input
+echo -n "$input" | wl-copy

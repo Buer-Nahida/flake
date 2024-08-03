@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+
+# Import Current Theme
+DIR="$HOME/.config/rofi"
+RASI="$DIR/music/config.rasi"
+
+# Options
+status="$(mpc status)"
+if [[ ${status} == *"[playing]"* ]]; then
+  toggle=""
+  play_or_pause="Pause"
+else
+  toggle=""
+  play_or_pause="Play"
+fi
+stop=""
+prev=""
+next=""
+playlist=""
+repeat=""
+random=""
+
+# Toggle Actions
+active=''
+urgent=''
+# Repeat
+if [[ $status == *"repeat: on"* ]]; then
+  active="-a 5"
+  repeat_tip_msg="Repeat Off"
+elif [[ $status == *"repeat: off"* ]]; then
+  urgent="-u 5"
+  repeat_tip_msg="Repeat On"
+else
+  repeat=" Parsing Error"
+fi
+# Random
+if [[ $status == *"random: on"* ]]; then
+  if [ -n "$active" ]; then
+    active+=",6"
+  else
+    active="-a 6"
+  fi
+  random_tip_msg="Random Off"
+elif [[ $status == *"random: off"* ]]; then
+  if [ -n "$urgent" ]; then
+    urgent+=",6"
+  else
+    urgent="-u 6"
+  fi
+  random_tip_msg="Random On"
+else
+  random=" Parsing Error"
+fi
+
+# Run Rofi
+run_rofi() {
+  printf "%s\n%s\n%s\n%s\n%s\n%s\n%s" "$toggle" "$stop" "$prev" "$next" "$playlist" "$repeat" "$random" |
+    rofi -dmenu \
+      "$active" "$urgent" \
+      -markup-rows \
+      -theme "$RASI"
+}
+get_music_data() {
+  case $1 in
+  -T) mpc -f '%title%\n\n%artist%' current ;;
+  -t) mpc -f '%title%' current ;;
+  -a) mpc -f '%artist%' current ;;
+  esac
+}
+send-notify() {
+  cover="/tmp/cover.png"
+  ffmpeg -i "$($HOME/.config/rofi/music/get_mpv_music_dir)"/"$(mpc current -f %file%)" -vf scale=700:700 "${cover}" -y || cover="$HOME/.config/rofi/music/fallback_cover.png"
+  notify-send -r 27072 -i /tmp/cover.png -a "$@"
+}
+summon_cover() { MediaControl nccover; }
+Play() { mpc -q play; }
+stop() { mpc -q stop; }
+next() { mpc -q next; }
+prev() { mpc -q prev; }
+clear() { mpc clear; }
+Pause() { mpc -q pause; }
+toggle_repeat() { mpc -q repeat; }
+toggle_random() { mpc -q random; }
+select_playlist() { mpc lsplaylists | rofi -dmenu -markup-rows; }
+
+# Actions
+case "$(run_rofi)" in
+"$toggle")
+  eval $play_or_pause && send-notify $play_or_pause "$(get_music_data -T)"
+  ;;
+"$stop")
+  send-notify "Stop mpd" "Stoping mpd..." && stop
+  ;;
+"$prev")
+  prev && send-notify "$(get_music_data -t)" "$(get_music_data -a)"
+  ;;
+"$next")
+  next && send-notify "$(get_music_data -t)" "$(get_music_data -a)"
+  ;;
+"$playlist")
+  clear && notify-send -r 27072 -a "Load playlist" "$(mpc load "$(select_playlist)")"
+  ;;
+"$repeat")
+  toggle_repeat && send-notify "$repeat_tip_msg" "$(get_music_data -T)"
+  ;;
+"$random")
+  toggle_random && send-notify "$random_tip_msg" "$(get_music_data -T)"
+  ;;
+esac

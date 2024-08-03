@@ -1,0 +1,1 @@
+{ programs.geary.enable = true; }
