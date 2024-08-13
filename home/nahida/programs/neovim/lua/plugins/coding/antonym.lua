@@ -1,5 +1,5 @@
 return {
-  "SR-MyStar/antonym.nvim",
+  "Buer-Nahida/antonym.nvim",
   lazy = true,
   cmd = "Antonym",
   opts = {

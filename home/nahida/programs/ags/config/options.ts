@@ -1,4 +1,15 @@
+import GLib from "gi://GLib";
 import { opt, mkOptions } from "lib/option";
+
+const home = GLib.getenv("HOME");
+if (home == null || home === "") {
+  console.error("Can't get $HOME environment variable");
+  App.quit();
+}
+
+const weather = JSON.parse(
+  Utils.readFile(`${home}/.secrets/weather.json`) || "{}",
+);
 
 const colors = {
   rosewater: "#f5e0dc",
@@ -33,8 +44,8 @@ const colors = {
 const options = mkOptions(OPTIONS, {
   theme: {
     font: {
-      size: opt("1.2rem"),
-      name: opt("Ubuntu Nerd Font"),
+      size: opt("0.9rem"),
+      name: opt("JetBrainsMono Nerd Font"),
       weight: opt(600),
     },
     notification: {
@@ -79,12 +90,12 @@ const options = mkOptions(OPTIONS, {
       >("right"),
     },
     bar: {
-      floating: opt(false),
-      margin_top: opt("0.5em"),
+      floating: opt(true),
+      margin_top: opt("0.25em"),
       margin_bottom: opt("0em"),
-      margin_sides: opt("0.5em"),
+      margin_sides: opt("0.25em"),
       border_radius: opt("0.4em"),
-      outer_spacing: opt("1.6em"),
+      outer_spacing: opt("0.25em"),
       label_spacing: opt("0.5em"),
       transparent: opt(false),
       background: opt(colors.crust),
@@ -115,7 +126,7 @@ const options = mkOptions(OPTIONS, {
           hover: opt(colors.surface1),
           text: opt(colors.pink),
           icon: opt(colors.pink),
-          spacing: opt("0.5em"),
+          spacing: opt("1em"),
         },
         media: {
           background: opt(colors.base2),
@@ -231,12 +242,8 @@ const options = mkOptions(OPTIONS, {
             song: opt(colors.lavender),
             artist: opt(colors.teal),
             album: opt(colors.pink),
-            background: {
-              color: opt(colors.crust),
-            },
-            border: {
-              color: opt(colors.surface0),
-            },
+            background: { color: opt(colors.crust) },
+            border: { color: opt(colors.surface0) },
             buttons: {
               inactive: opt(colors.surface2),
               enabled: opt(colors.teal),
@@ -251,18 +258,10 @@ const options = mkOptions(OPTIONS, {
             },
           },
           volume: {
-            card: {
-              color: opt(colors.base),
-            },
-            background: {
-              color: opt(colors.crust),
-            },
-            border: {
-              color: opt(colors.surface0),
-            },
-            label: {
-              color: opt(colors.maroon),
-            },
+            card: { color: opt(colors.base) },
+            background: { color: opt(colors.crust) },
+            border: { color: opt(colors.surface0) },
+            label: { color: opt(colors.maroon) },
             text: opt(colors.text),
             listitems: {
               passive: opt(colors.text),
@@ -290,22 +289,12 @@ const options = mkOptions(OPTIONS, {
             },
           },
           network: {
-            card: {
-              color: opt(colors.base),
-            },
-            background: {
-              color: opt(colors.crust),
-            },
-            border: {
-              color: opt(colors.surface0),
-            },
-            label: {
-              color: opt(colors.mauve),
-            },
+            card: { color: opt(colors.base) },
+            background: { color: opt(colors.crust) },
+            border: { color: opt(colors.surface0) },
+            label: { color: opt(colors.mauve) },
             text: opt(colors.text),
-            status: {
-              color: opt(colors.overlay0),
-            },
+            status: { color: opt(colors.overlay0) },
             listitems: {
               passive: opt(colors.text),
               active: opt(colors.mauve),
@@ -320,18 +309,10 @@ const options = mkOptions(OPTIONS, {
             },
           },
           bluetooth: {
-            card: {
-              color: opt(colors.base),
-            },
-            background: {
-              color: opt(colors.crust),
-            },
-            border: {
-              color: opt(colors.surface0),
-            },
-            label: {
-              color: opt(colors.sky),
-            },
+            card: { color: opt(colors.base) },
+            background: { color: opt(colors.crust) },
+            border: { color: opt(colors.surface0) },
+            label: { color: opt(colors.sky) },
             text: opt(colors.text),
             status: opt(colors.overlay0),
             switch_divider: opt(colors.surface1),
@@ -361,18 +342,10 @@ const options = mkOptions(OPTIONS, {
             },
           },
           battery: {
-            card: {
-              color: opt(colors.base),
-            },
-            background: {
-              color: opt(colors.crust),
-            },
-            border: {
-              color: opt(colors.surface0),
-            },
-            label: {
-              color: opt(colors.yellow),
-            },
+            card: { color: opt(colors.base) },
+            background: { color: opt(colors.crust) },
+            border: { color: opt(colors.surface0) },
+            label: { color: opt(colors.yellow) },
             text: opt(colors.text),
             listitems: {
               passive: opt(colors.text),
@@ -390,15 +363,9 @@ const options = mkOptions(OPTIONS, {
             },
           },
           clock: {
-            card: {
-              color: opt(colors.base),
-            },
-            background: {
-              color: opt(colors.crust),
-            },
-            border: {
-              color: opt(colors.surface0),
-            },
+            card: { color: opt(colors.base) },
+            background: { color: opt(colors.crust) },
+            border: { color: opt(colors.surface0) },
             text: opt(colors.text),
             time: {
               time: opt(colors.pink),
@@ -432,18 +399,10 @@ const options = mkOptions(OPTIONS, {
             },
           },
           dashboard: {
-            card: {
-              color: opt(colors.base),
-            },
-            background: {
-              color: opt(colors.crust),
-            },
-            border: {
-              color: opt(colors.surface0),
-            },
-            profile: {
-              name: opt(colors.pink),
-            },
+            card: { color: opt(colors.base) },
+            background: { color: opt(colors.crust) },
+            border: { color: opt(colors.surface0) },
+            profile: { name: opt(colors.pink) },
             powermenu: {
               shutdown: opt(colors.red),
               restart: opt(colors.peach),
@@ -490,26 +449,14 @@ const options = mkOptions(OPTIONS, {
             },
             directories: {
               left: {
-                top: {
-                  color: opt(colors.pink),
-                },
-                middle: {
-                  color: opt(colors.yellow),
-                },
-                bottom: {
-                  color: opt(colors.maroon),
-                },
+                top: { color: opt(colors.pink) },
+                middle: { color: opt(colors.yellow) },
+                bottom: { color: opt(colors.maroon) },
               },
               right: {
-                top: {
-                  color: opt(colors.teal),
-                },
-                middle: {
-                  color: opt(colors.mauve),
-                },
-                bottom: {
-                  color: opt(colors.lavender),
-                },
+                top: { color: opt(colors.teal) },
+                middle: { color: opt(colors.mauve) },
+                bottom: { color: opt(colors.lavender) },
               },
             },
             monitors: {
@@ -557,33 +504,30 @@ const options = mkOptions(OPTIONS, {
 
   bar: {
     layouts: opt({
-      "1": {
-        left: ["dashboard", "workspaces", "windowtitle"],
-        middle: ["media"],
-        right: ["volume", "clock", "notifications"],
-      },
-      "2": {
-        left: ["dashboard", "workspaces", "windowtitle"],
-        middle: ["media"],
-        right: ["volume", "clock", "notifications"],
-      },
+      // "1": {
+      //   left: ["dashboard", "workspaces", "windowtitle"],
+      //   middle: ["media"],
+      //   right: ["volume", "clock", "notifications"],
+      // },
+      // "2": {
+      //   left: ["dashboard", "workspaces", "windowtitle"],
+      //   middle: ["media"],
+      //   right: ["volume", "clock", "notifications"],
+      // },
       "0": {
-        left: ["dashboard", "workspaces", "windowtitle"],
-        middle: ["media"],
+        left: ["dashboard", "workspaces"],
+        middle: ["clock", "notifications"],
         right: [
+          "media",
           "volume",
           "network",
           "bluetooth",
           "battery",
           "systray",
-          "clock",
-          "notifications",
         ],
       },
     }),
-    launcher: {
-      icon: opt("󰣇"),
-    },
+    launcher: { icon: opt("󱄅") },
     workspaces: {
       show_icons: opt(false),
       show_numbered: opt(false),
@@ -593,35 +537,23 @@ const options = mkOptions(OPTIONS, {
         active: opt(""),
         occupied: opt(""),
       },
-      workspaces: opt(10),
+      workspaces: opt(5),
       spacing: opt(1),
       monitorSpecific: opt(true),
-      reverse_scroll: opt(false),
+      reverse_scroll: opt(true),
       scroll_speed: opt(5),
     },
-    volume: {
-      label: opt(true),
-    },
+    volume: { label: opt(true) },
     network: {
       truncation: opt(true),
       truncation_size: opt(7),
       label: opt(true),
     },
-    bluetooth: {
-      label: opt(true),
-    },
-    battery: {
-      label: opt(true),
-    },
-    systray: {
-      ignore: opt(["KDE Connect Indicator", "spotify-client"]),
-    },
-    clock: {
-      format: opt("󰃭  %a %b %d    %I:%M:%S %p"),
-    },
-    notifications: {
-      show_total: opt(false),
-    },
+    bluetooth: { label: opt(true) },
+    battery: { label: opt(true) },
+    systray: { ignore: opt([]) },
+    clock: { format: opt("%Y年%m月%d日 %H:%M:%S %A") },
+    notifications: { show_total: opt(true) },
   },
 
   menus: {
@@ -629,24 +561,20 @@ const options = mkOptions(OPTIONS, {
       powermenu: {
         sleep: opt("systemctl suspend"),
         reboot: opt("systemctl reboot"),
-        logout: opt("pkill Hyprland"),
-        shutdown: opt("shutdown now"),
+        logout: opt("hyprctl dispatch exit"),
+        shutdown: opt("systemctl poweroff"),
         avatar: {
-          image: opt(
-            "/home/jaskir/Pictures/Icons/900-900-max_catppuccin-mocha_hald8_GaussianRBF_lum1_shape96_near16.png",
-          ),
+          image: opt(`${App.configDir}/assets/avatar.jpg`),
           name: opt<"system" | string>("system"),
         },
       },
-      stats: {
-        enable_gpu: opt(false),
-      },
+      stats: { enable_gpu: opt(false) },
       shortcuts: {
         left: {
           shortcut1: {
-            icon: opt("󰇩"),
-            tooltip: opt("Microsoft Edge"),
-            command: opt("microsoft-edge-stable"),
+            icon: opt("󰈹"),
+            tooltip: opt("Firefox"),
+            command: opt("firefox"),
           },
           shortcut2: {
             icon: opt(""),
@@ -656,7 +584,7 @@ const options = mkOptions(OPTIONS, {
           shortcut3: {
             icon: opt(""),
             tooltip: opt("Discord"),
-            command: opt("discord"),
+            command: opt("webcord"),
           },
           shortcut4: {
             icon: opt(""),
@@ -673,7 +601,7 @@ const options = mkOptions(OPTIONS, {
           shortcut3: {
             icon: opt("󰄀"),
             tooltip: opt("Screenshot"),
-            command: opt('bash -c "$HOME/.config/ags/services/snapshot.sh"'),
+            command: opt(`${home}/.config/ags/services/snapshot.sh`),
           },
         },
       },
@@ -681,50 +609,45 @@ const options = mkOptions(OPTIONS, {
         left: {
           directory1: {
             label: opt("󰉍 Downloads"),
-            command: opt('bash -c "dolphin $HOME/Downloads/"'),
+            command: opt(`xdg-open ${home}/Downloads`),
           },
           directory2: {
             label: opt("󰉏 Videos"),
-            command: opt('bash -c "dolphin $HOME/Videos/"'),
+            command: opt(`xdg-open ${home}/Videos`),
           },
           directory3: {
-            label: opt("󰚝 Projects"),
-            command: opt('bash -c "dolphin $HOME/Projects/"'),
+            label: opt("󰚝 Private"),
+            command: opt(`xdg-open ${home}/Private`),
           },
         },
         right: {
           directory1: {
             label: opt("󱧶 Documents"),
-            command: opt('bash -c "dolphin $HOME/Documents/"'),
+            command: opt(`xdg-open ${home}/Documents`),
           },
           directory2: {
             label: opt("󰉏 Pictures"),
-            command: opt('bash -c "dolphin $HOME/Pictures/"'),
+            command: opt(`xdg-open ${home}/Pictures`),
           },
           directory3: {
             label: opt("󱂵 Home"),
-            command: opt('bash -c "dolphin $HOME/"'),
+            command: opt(`xdg-open ${home}`),
           },
         },
       },
     },
     clock: {
-      time: {
-        military: opt(false),
-      },
+      time: { military: opt(true) },
       weather: {
         interval: opt(60000),
-        unit: opt<"metric" | "imperial">("imperial"),
-        location: opt("Los Angeles"),
-        key: opt<string>(
-          JSON.parse(Utils.readFile(`${App.configDir}/.weather.json`) || "{}")
-            ?.weather_api_key || "",
-        ),
+        unit: opt<"metric" | "imperial">("metric"),
+        location: opt<string>(weather?.location || ""),
+        key: opt<string>(weather?.key || ""),
       },
     },
   },
 
-  terminal: opt("kitty"),
+  terminal: opt("wezterm"),
 
   notifications: {
     position: opt<

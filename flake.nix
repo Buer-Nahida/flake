@@ -18,12 +18,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
-      ref = "v0.41.2";
+      rev = "b03f41efec14273cf25c42d4cef326acc36cb319";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # hypr-dynamic-cursors = {

@@ -8,7 +8,6 @@
     grimblast
     gpu-screen-recorder
     hyprpicker
-    btop
     dart-sass
     brightnessctl
     gnome.gnome-bluetooth

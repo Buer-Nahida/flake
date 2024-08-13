@@ -62,11 +62,6 @@
           install_url =
             "https://addons.mozilla.org/firefox/downloads/file/4305718/catppuccin_gh_file_explorer-0.7.1.xpi";
         };
-        "addon@darkreader.org" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4295557/darkreader-4.9.86.xpi";
-        };
         "{74145f27-f039-47ce-a470-a662b129930a}" = {
           installation_mode = "force_installed";
           install_url =

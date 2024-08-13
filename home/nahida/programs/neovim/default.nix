@@ -27,7 +27,7 @@
       tailwindcss-language-server # for css
       github-cli # for octo.nvim
       # for `lang.*`
-      vscode-langservers-extracted # # json and `linting.eslint`
+      vscode-langservers-extracted # # json
       ## markdown
       marksman
       markdownlint-cli2

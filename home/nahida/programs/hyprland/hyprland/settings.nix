@@ -1,10 +1,8 @@
-{ pkgs, ... }: {
-  plugin = {
-    scroller = {
-      column_default_width = "floatling";
-      focus_wrap = false;
-      column_widths = "one twothirds onehalf onethird";
-    };
+{ pkgs, config, ... }: {
+  plugin.scroller = {
+    column_default_width = "floatling";
+    focus_wrap = false;
+    column_widths = "one twothirds onehalf onethird";
   };
   env = [
     "QT_IM_MODULE, fcitx"
@@ -18,13 +16,13 @@
   ];
   monitor = [ ", preferred, auto, 1" ];
   exec-once = [
-    "LANG=en_US.utf8 ags"
+    "ags"
     ''
       mpvpaper -s -p HDMI-A-1 ~/.config/hypr/wallpapers/nahida.mp4 -o "--loop --no-audio --vo=libmpv" &''
     "fcitx5"
     "wl-paste --watch cliphist store"
     "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-    "hyprctl setcursor Bibata-Modern-Classic 24"
+    "hyprctl setcursor catppuccin-mocha-${config.catppuccin.accent}-cursors"
   ];
   general = {
     gaps_in = 4;
@@ -53,30 +51,34 @@
     numlock_by_default = true;
     repeat_delay = 250;
     repeat_rate = 50;
-
+    follow_mouse = 0;
     touchpad = {
       natural_scroll = true;
       disable_while_typing = true;
       clickfinger_behavior = true;
       scroll_factor = 0.5;
     };
-
     # special_fallthrough = true   # only in new hyprland versions. but they're hella fucked
-    follow_mouse = 0;
   };
   decoration = {
     rounding = 0;
-
     drop_shadow = false;
     shadow_ignore_window = true;
     shadow_range = 20;
     shadow_offset = "0 2";
     shadow_render_power = 2;
     "col.shadow" = "rgba(0000001A)";
-
     dim_inactive = false;
     dim_strength = 0.1;
     dim_special = 0;
+    blur = {
+      size = 1;
+      passes = 4;
+      new_optimizations = true;
+      xray = true;
+      ignore_opacity = true;
+      # blurls = [ "bar-0" ];
+    };
   };
   animations = {
     enabled = true;
@@ -100,113 +102,45 @@
     ];
   };
   misc = {
-    vfr = 1;
+    vfr = true;
     vrr = 1;
-    # layers_hog_mouse_focus = true;
-    focus_on_activate = true;
     animate_manual_resizes = false;
     animate_mouse_windowdragging = false;
-    enable_swallow = false;
-    swallow_regex = "(foot|kitty|allacritty|Alacritty)";
-
-    disable_hyprland_logo = true;
     new_window_takes_over_fullscreen = 2;
   };
-  bind = let SLURP_COMMAND = "$(slurp -d -c eedcf5BB -b 4f425644 -s 00000000)";
-  in with pkgs; [
-    "Super, Return, exec, wezterm"
-    "Super, E, exec, nautilus --new-window"
-    "Super+Alt, E, exec, thunar"
-    "Super, W, exec, firefox"
-    "Super, D, exec, ags -t launcher"
-    ''Super, I, exec, XDG_CURRENT_DESKTOP="gnome" gnome-control-center''
-    "Control+Shift, Escape, exec, wezterm -e btm"
-    # "Super, Period, exec, pkill fuzzel || ~/.local/bin/fuzzel-emoji"
-    "Super, Q, killactive,"
-    "Alt, F4, exec, hyprctl kill"
-    # ''
-    #   Super+Shift+Alt, S, exec, grim -g "${SLURP_COMMAND}" - | swappy -f -
-    # ''
-    # ''
-    #   Super+Shift, S, exec, grim -g "${SLURP_COMMAND}" - | wl-copy
-    # ''
-    # "Super+Alt, R, exec, ~/.config/ags/scripts/record-script.sh"
-    # "Control+Alt, R, exec, ~/.config/ags/scripts/record-script.sh --fullscreen"
-    # "Super+Shift+Alt, R, exec, ~/.config/ags/scripts/record-script.sh --fullscreen-sound"
-    # "Super+Shift, C, exec, hyprpicker -a"
-    "Super, V, exec, ~/.config/rofi/clipmenu/script"
-    # ''Control+Super+Shift,S,exec,grim -g "${SLURP_COMMAND}" "tmp.png" && tesseract "tmp.png" - | wl-copy && rm "tmp.png"''
-    "Control+Super, T, exec, ~/.config/ags/scripts/color_generation/switchwall.sh"
-    "Super, backslash, exec, pkill .ags-wrapped || LANG=en_US.utf8 ags"
-    "Super, h, scroller:movefocus, l"
-    "Super, j, workspace, +1"
-    "Super, k, workspace, -1"
-    "Super, l, scroller:movefocus, r"
-    "Super+Shift, h, scroller:movewindow, l"
-    "Super+Shift, j, movetoworkspace, +1"
-    "Super+Shift, k, movetoworkspace, -1"
-    "Super+Shift, l, scroller:movewindow, r"
-    "Super, R, scroller:cyclesize, next"
-    "Super, C, scroller:alignwindow, c"
-    "Super+Alt, Q, exec, ags -t 'session'"
-    "Super, F, fullscreen, 0"
-    "Super+Shift, Escape, exec, ~/.config/hypr/scripts/other/transout"
-    "Super, Escape, exec, ~/.config/hypr/scripts/other/transout -p"
-    # "Super, S, togglespecialworkspace,"
-  ];
   bindm = [ "Super, mouse:272, movewindow" "Super, mouse:273, resizewindow" ];
-  bindl = [
-    ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    "Super+Shift,M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    ",Print,exec,grim - | wl-copy"
-    ''
-      Super+Shift, N, exec, playerctl next || playerctl position `bc <<< "100 * $(playerctl metadata mpris:length) / 1000000 / 100"`''
-    ''
-      ,XF86AudioNext, exec, playerctl next || playerctl position `bc <<< "100 * $(playerctl metadata mpris:length) / 1000000 / 100"`''
-    "Super+Shift, B, exec, playerctl previous"
-    "Super+Shift, P, exec, playerctl play-pause"
-    ",XF86AudioPlay, exec, playerctl play-pause"
-  ];
   bindel = [
-    ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+"
-    ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
-    "Super+Alt, X, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+"
-    "Super+Alt, Z, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
-
-    # ",XF86MonBrightnessUp, exec, ags run-js 'brightness.screen_value += 0.01; indicator.popup(1);'"
-    # ",XF86MonBrightnessDown, exec, ags run-js 'brightness.screen_value -= 0.01; indicator.popup(1);'"
-    # "Super+Control, X, exec, ags run-js 'brightness.screen_value += 0.01; indicator.popup(1);'"
-    # "Super+Control, Z, exec, ags run-js 'brightness.screen_value -= 0.01; indicator.popup(1);'"
+    ", XF86AudioRaiseVolume, exec, amixer -Mq set Master,0 1%+"
+    ", XF86AudioLowerVolume, exec, amixer -Mq set Master,0 1%-"
+    ", XF86AudioMute,        exec, amixer set Master toggle"
+    "Super+Alt, X,           exec, amixer -Mq set Master,0 1%+"
+    "Super+Alt, Z,           exec, amixer -Mq set Master,0 1%-"
+    "Super+Alt, M,           exec, amixer set Master toggle"
   ];
-  binde = [
-    "Super, Minus, splitratio, -0.1"
-    "Super, Equal, splitratio, 0.1"
-    "Super, Semicolon, splitratio, -0.1"
-    "Super, Apostrophe, splitratio, 0.1"
+  bind = [
+    "Alt,         F4,        exec, hyprctl kill"
+    "Super,       return,    exec, wezterm"
+    "Super,       e,         exec, nautilus --new-window"
+    "Super,       w,         exec, firefox"
+    "Super,       d,         exec, rofi -show drun"
+    "Super,       v,         exec, ~/.config/rofi/clipmenu/script"
+    "Super,       backslash, exec, pkill .ags-wrapped || ags"
+    "Super,       escape,    exec, ~/.config/hypr/scripts/other/transout -p"
+    "Super,       q,         killactive,"
+    "Super,       h,         scroller:movefocus, l"
+    "Super,       j,         workspace, +1"
+    "Super,       k,         workspace, -1"
+    "Super,       l,         scroller:movefocus, r"
+    "Super,       f,         fullscreen, 0"
+    "Super,       r,         scroller:cyclesize, next"
+    "Super,       c,         scroller:alignwindow, c"
+    "Super+Alt,   q,         exec, ags -t 'session'"
+    "Super+Shift, h,         scroller:movewindow, l"
+    "Super+Shift, j,         movetoworkspace, +1"
+    "Super+Shift, k,         movetoworkspace, -1"
+    "Super+Shift, l,         scroller:movewindow, r"
+    "Super+Shift, escape,    exec, ~/.config/hypr/scripts/other/transout"
+    ",Print,                 exec, ~/.config/ags/services/snapshot.sh"
   ];
-  windowrule = [
-    "noblur,.*" # Disables blur for windows. Substantially improves performance.
-    "pin, ^(showmethekey-gtk)$"
-  ];
-  windowrulev2 = [ "tile,class:(wpsoffice)" ];
-  layerrule = [
-    "xray 1, .*"
-    "noanim, selection"
-    "noanim, overview"
-    "noanim, anyrun"
-    "blur, swaylock"
-    "blur, eww"
-    "ignorealpha 0.8, eww"
-    "noanim, noanim"
-    "blur, noanim"
-    "blur, gtk-layer-shell"
-    "ignorezero, gtk-layer-shell"
-    "blur, launcher"
-    "ignorealpha 0.5, launcher"
-    "blur, notifications"
-    "ignorealpha 0.69, notifications"
-    "blur, session"
-    "noanim, sideright"
-    "noanim, sideleft"
-  ];
+  windowrule = [ "noblur,.*" "pin, ^(showmethekey-gtk)$" ];
 }

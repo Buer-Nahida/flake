@@ -5,6 +5,14 @@ import { dependencies } from "lib/utils";
 const { terminal } = options;
 const { enable_gpu } = options.menus.dashboard.stats;
 
+const btm = (default_widget_type) =>
+  terminal.bind("value").as((term) => () => {
+    App.closeWindow("dashboardmenu");
+    Utils.execAsync(
+      `${term} -e btm -e --default_widget_type=${default_widget_type}`,
+    ).catch((err) => `Failed to open btop: ${err}`);
+  });
+
 const Stats = () => {
   const divide = ([total, free]) => free / total;
 
@@ -13,7 +21,7 @@ const Stats = () => {
 
   const cpu = Variable(0, {
     poll: [
-      2000,
+      250,
       "top -b -n 1",
       (out) => {
         if (typeof out !== "string") {
@@ -35,14 +43,16 @@ const Stats = () => {
     { total: 0, used: 0, percentage: 0 },
     {
       poll: [
-        2000,
+        250,
         "free",
         (out) => {
           if (typeof out !== "string") {
             return { total: 0, used: 0, percentage: 0 };
           }
 
-          const ramOut = out.split("\n").find((line) => line.includes("Mem:"));
+          const ramOut = out
+            .split("\n")
+            .find((line) => line.includes("内存："));
 
           if (ramOut === undefined) {
             return { total: 0, used: 0, percentage: 0 };
@@ -123,25 +133,25 @@ const Stats = () => {
 
                   return (self.children = [
                     Widget.Button({
-                      on_primary_click: terminal.bind("value").as((term) => {
-                        return () => {
+                      on_primary_click: terminal
+                        .bind("value")
+                        .as((term) => () => {
                           App.closeWindow("dashboardmenu");
-                          Utils.execAsync(`bash -c "${term} -e btop"`).catch(
+                          Utils.execAsync(`${term} -e nvtop`).catch(
                             (err) => `Failed to open btop: ${err}`,
                           );
-                        };
-                      }),
+                        }),
                       label: "󰢮",
                     }),
                     Widget.Button({
-                      on_primary_click: terminal.bind("value").as((term) => {
-                        return () => {
+                      on_primary_click: terminal
+                        .bind("value")
+                        .as((term) => () => {
                           App.closeWindow("dashboardmenu");
-                          Utils.execAsync(`bash -c "${term} -e btop"`).catch(
+                          Utils.execAsync(`${term} -e nvtop`).catch(
                             (err) => `Failed to open btop: ${err}`,
                           );
-                        };
-                      }),
+                        }),
                       child: Widget.LevelBar({
                         class_name: "stats-bar",
                         hexpand: true,
@@ -181,7 +191,7 @@ const Stats = () => {
     {
       poll: [
         2000,
-        "df -B1 /",
+        "df -B1 /nix",
         (out) => {
           if (typeof out !== "string") {
             return { total: 0, used: 0, percentage: 0 };
@@ -226,25 +236,11 @@ const Stats = () => {
             vpack: "center",
             children: [
               Widget.Button({
-                on_primary_click: terminal.bind("value").as((term) => {
-                  return () => {
-                    App.closeWindow("dashboardmenu");
-                    Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                      (err) => `Failed to open btop: ${err}`,
-                    );
-                  };
-                }),
+                on_primary_click: btm("cpu"),
                 label: "",
               }),
               Widget.Button({
-                on_primary_click: terminal.bind("value").as((term) => {
-                  return () => {
-                    App.closeWindow("dashboardmenu");
-                    Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                      (err) => `Failed to open btop: ${err}`,
-                    );
-                  };
-                }),
+                on_primary_click: btm("cpu"),
                 child: Widget.LevelBar({
                   class_name: "stats-bar",
                   hexpand: true,
@@ -272,25 +268,11 @@ const Stats = () => {
             hexpand: true,
             children: [
               Widget.Button({
-                on_primary_click: terminal.bind("value").as((term) => {
-                  return () => {
-                    App.closeWindow("dashboardmenu");
-                    Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                      (err) => `Failed to open btop: ${err}`,
-                    );
-                  };
-                }),
+                on_primary_click: btm("proc"),
                 label: "",
               }),
               Widget.Button({
-                on_primary_click: terminal.bind("value").as((term) => {
-                  return () => {
-                    App.closeWindow("dashboardmenu");
-                    Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                      (err) => `Failed to open btop: ${err}`,
-                    );
-                  };
-                }),
+                on_primary_click: btm("proc"),
                 child: Widget.LevelBar({
                   class_name: "stats-bar",
                   hexpand: true,
@@ -317,25 +299,11 @@ const Stats = () => {
             vpack: "center",
             children: [
               Widget.Button({
-                on_primary_click: terminal.bind("value").as((term) => {
-                  return () => {
-                    App.closeWindow("dashboardmenu");
-                    Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                      (err) => `Failed to open btop: ${err}`,
-                    );
-                  };
-                }),
+                on_primary_click: btm("disk"),
                 label: "󰋊",
               }),
               Widget.Button({
-                on_primary_click: terminal.bind("value").as((term) => {
-                  return () => {
-                    App.closeWindow("dashboardmenu");
-                    Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                      (err) => `Failed to open btop: ${err}`,
-                    );
-                  };
-                }),
+                on_primary_click: btm("disk"),
                 child: Widget.LevelBar({
                   class_name: "stats-bar",
                   hexpand: true,

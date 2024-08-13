@@ -1,8 +1,8 @@
 * {
-  background:     rgb(30, 30, 46);
-  background-alt: #252931;
-  foreground:     #A2D5AB;
-  selected:       @foreground;
+  background:     #11111B;
+  background-alt: #242438;
+  foreground:     #89DCEB;
+  selected:       #F5C2E7;
   active:         #9ECE6A;
   urgent:         #F7768E;
   button:         @background-alt;

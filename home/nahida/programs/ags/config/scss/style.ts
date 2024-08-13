@@ -47,7 +47,6 @@ async function resetCss() {
 
   try {
     await bash(`
-      rm -rf ${TMP}/scss
       mkdir -p ${TMP}
       cp -r ${App.configDir}/scss ${TMP}
       chmod +w ${TMP}/scss -R

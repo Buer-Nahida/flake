@@ -4,7 +4,7 @@
       ags.homeManagerModules.default
       sops-nix.homeManagerModules.sops
       hyprland.homeManagerModules.default
-      # catppuccin.homeManagerModules.catppuccin
+      catppuccin.homeManagerModules.catppuccin
     ];
   home = {
     inherit username homeDirectory;
