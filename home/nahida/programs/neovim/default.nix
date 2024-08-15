@@ -14,6 +14,7 @@
       gnumake # for telescope-fzf-native.nvim
       xdg-utils # for `gx` keymap
       nodePackages_latest.prettier # for `formatting.prettier`
+      # nodePackages_latest.npm # for mason.nvim
       # for nvim-treesitter
       gcc
       curl
