@@ -1,1 +1,1 @@
-{ programs.gvfs.enable = true; }
+{ services.gvfs.enable = true; }
