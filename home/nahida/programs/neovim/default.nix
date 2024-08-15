@@ -28,6 +28,7 @@
       github-cli # for octo.nvim
       # for `lang.*`
       vscode-langservers-extracted # # json
+      astro-language-server # # astro
       ## markdown
       marksman
       markdownlint-cli2
