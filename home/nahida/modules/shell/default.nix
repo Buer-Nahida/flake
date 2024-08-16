@@ -59,6 +59,11 @@
     };
     yazi.enableZshIntegration = true;
     wezterm.enableZshIntegration = true;
+    atuin = {
+      enable = true;
+      settings.auto_sync = false;
+      enableZshIntegration = true;
+    };
   };
   xdg.configFile = {
     "zsh/p10k.zsh".source = ./config/p10k.zsh;
