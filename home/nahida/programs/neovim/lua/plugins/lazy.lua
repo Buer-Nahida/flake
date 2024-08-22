@@ -1,4 +1,7 @@
 BorderStyle = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+vim.g.pkg_path = {
+  ["@astro/ts-plugin"] = vim.env.HOME .. "node_modules/@astrojs/ts-plugin",
+}
 return {
   rocks = { hererocks = false },
   spec = {
@@ -35,7 +38,6 @@ return {
     { import = "plugins.lsp" },
     { import = "plugins.treesitter" },
     { import = "plugins.ui" },
-    { import = "plugins.LazyVim" },
     {
       "williamboman/mason.nvim",
       opts = function(_, opts)

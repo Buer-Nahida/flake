@@ -105,15 +105,5 @@ local ICONS = {
 
 return {
   "Buer-Nahida/LazyVim",
-  opts = {
-    icons = ICONS,
-    extras_config = {
-      lang = {
-        astro = {
-          ["@astrojs/ts-plugin_localtion"] = vim.env.HOME
-            .. "/node_modules/@astrojs/ts-plugin",
-        },
-      },
-    },
-  },
+  opts = { icons = ICONS },
 }
