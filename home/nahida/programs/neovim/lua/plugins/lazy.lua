@@ -2,10 +2,9 @@ BorderStyle = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 return {
   rocks = { hererocks = false },
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "Buer-Nahida/LazyVim", import = "lazyvim.plugins" },
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
     { "williamboman/mason-lspconfig.nvim", enabled = false },
-    { "williamboman/mason.nvim", enabled = false },
     { import = "lazyvim.plugins.extras.coding.codeium" },
     { import = "lazyvim.plugins.extras.coding.neogen" },
     { import = "lazyvim.plugins.extras.coding.yanky" },
@@ -36,6 +35,13 @@ return {
     { import = "plugins.lsp" },
     { import = "plugins.treesitter" },
     { import = "plugins.ui" },
+    { import = "plugins.LazyVim" },
+    {
+      "williamboman/mason.nvim",
+      opts = function(_, opts)
+        opts.ensure_installed = { "vtsls" }
+      end,
+    },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
