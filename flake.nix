@@ -19,10 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-      rev = "b03f41efec14273cf25c42d4cef326acc36cb319";
+      url = "git+https://github.com/hyprwm/Hyprland?ref=v0.42.0&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # hypr-dynamic-cursors = {
