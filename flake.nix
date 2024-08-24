@@ -14,6 +14,10 @@
       url = "github:somepaulo/MoreWaita";
       flake = false;
     };
+    wezterm = {
+      url = "github:wez/wezterm/main?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,10 +26,10 @@
       url = "git+https://github.com/hyprwm/Hyprland?ref=v0.42.0&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hypr-dynamic-cursors = {
-    #   url = "github:VirtCode/hypr-dynamic-cursors";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    hypr-dynamic-cursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs.hyprland.follows = "hyprland";
+    };
     hyprscroller = {
       url = "github:dawsers/hyprscroller";
       inputs.hyprland.follows = "hyprland";

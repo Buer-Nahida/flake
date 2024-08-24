@@ -9,9 +9,7 @@
       twemoji-color-font
       mypkgs.fonts
       mypkgs.misans-fonts
-      (nerdfonts.override {
-        fonts = [ "JetBrainsMono" "UbuntuMono" "Iosevka" ];
-      })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       google-fonts
       font-awesome
       open-sans

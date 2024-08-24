@@ -1,8 +1,22 @@
 { pkgs, config, ... }: {
-  plugin.scroller = {
-    column_default_width = "floatling";
-    focus_wrap = false;
-    column_widths = "one twothirds onehalf onethird";
+  plugin = {
+    scroller = {
+      column_default_width = "floatling";
+      focus_wrap = false;
+      column_widths = "one twothirds onehalf onethird";
+    };
+    dynamic-cursors = {
+      mode = "stretch";
+      threshold = 1;
+      shake.enabled = false;
+      stretch = {
+        limit = 3000;
+        # linear             - a linear function is used
+        # quadratic          - a quadratic function is used
+        # negative_quadratic - negative version of the quadratic one, feels more aggressive
+        function = "negative_quadratic";
+      };
+    };
   };
   env = [
     "QT_IM_MODULE, fcitx"
@@ -22,7 +36,7 @@
     "fcitx5"
     "wl-paste --watch cliphist store"
     "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-    "hyprctl setcursor catppuccin-mocha-${config.catppuccin.accent}-cursors"
+    "hyprctl setcursor catppuccin-mocha-${config.catppuccin.accent}-cursors 32"
   ];
   general = {
     gaps_in = 4;

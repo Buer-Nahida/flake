@@ -13,12 +13,8 @@
       extraConfig.init.defaultBranch = "main";
       delta = {
         enable = true;
-        options = {
-          side-by-side = true;
-          syntax-theme = "Catppuccin-mocha";
-          colorMoved = "default";
-          features = "Catppuccin-mocha zebra-dark";
-        };
+        catppuccin.enable = true;
+        options.side-by-side = true;
       };
     };
   };

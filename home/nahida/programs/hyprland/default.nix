@@ -6,7 +6,6 @@
     with libsForQt5; [
       crow-translate
       mpvpaper
-      pkgs.nautilus
       icon-library
       pkgs.dconf-editor
       pkgs.gnome-tweaks

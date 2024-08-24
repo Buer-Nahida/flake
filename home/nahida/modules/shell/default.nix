@@ -17,7 +17,6 @@
     zoxide
     eza
     jq
-    fzf
     fd
     ripgrep
 
@@ -56,6 +55,10 @@
         ignoreAllDups = true;
         share = true;
       };
+    };
+    fzf = {
+      enable = true;
+      catppuccin.enable = true;
     };
     yazi.enableZshIntegration = true;
     wezterm.enableZshIntegration = true;
