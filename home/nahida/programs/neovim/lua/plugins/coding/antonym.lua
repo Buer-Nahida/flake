@@ -1,12 +1,9 @@
 return {
   "Buer-Nahida/antonym.nvim",
-  lazy = true,
   cmd = "Antonym",
   opts = {
     only_antonym = true,
-    words = {
-      ["true"] = "false",
-    },
+    words = { ["true"] = "false" },
   },
   keys = {
     {

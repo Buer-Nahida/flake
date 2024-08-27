@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ nautilus nemo-with-extensions ];
+  home.packages = with pkgs; [ nautilus ];
   programs.yazi = {
     enable = true;
     initLua = ./init.lua;

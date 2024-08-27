@@ -12,8 +12,6 @@ return {
     dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      vim.opt.pumblend = 100
-      vim.opt.pumheight = 15
       table.insert(opts.sources, { name = "emoji" })
     end,
   },
@@ -23,12 +21,12 @@ return {
     ---@type cmp.ConfigSchema
     opts = {
       window = {
-        completion = {
-          col_offset = -3,
-          side_padding = 0,
-          max_width = 50,
+        completion = { col_offset = -3, side_padding = 0, winblend = 0 },
+        documentation = {
+          winhighlight = "FloatBorder:FloatBorder",
+          border = BorderStyle,
+          winblend = 0,
         },
-        documentation = { border = BorderStyle },
       },
       completion = { completeopt = "noselect" },
       preselect = cmp.PreselectMode.None,
@@ -41,15 +39,15 @@ return {
               entry:get_completion_item().label
             )
             if icon then
-              vim_item.kind = icon
-              vim_item.kind_hl_group = hl_group
+              vim_item.kind = " " .. icon .. " "
+              vim_item.kind_hl_group = "Rev" .. hl_group
               return vim_item
             end
           end
           local kind = require("lspkind").cmp_format({
             mode = "symbol_text",
             maxwidth = 60,
-            symbol_map = LazyVim.config.icons.kinds,
+            symbol_map = LazyVim.config.icons.raw_kinds,
           })(entry, vim_item)
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
           kind.kind = " " .. (strings[1] or "") .. " "

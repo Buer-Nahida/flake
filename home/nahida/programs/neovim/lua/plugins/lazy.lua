@@ -8,7 +8,6 @@ return {
     { "Buer-Nahida/LazyVim", import = "lazyvim.plugins" },
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
     { "williamboman/mason-lspconfig.nvim", enabled = false },
-    { import = "lazyvim.plugins.extras.coding.codeium" },
     { import = "lazyvim.plugins.extras.coding.neogen" },
     { import = "lazyvim.plugins.extras.coding.yanky" },
     { import = "lazyvim.plugins.extras.editor.mini-move" },

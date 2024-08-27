@@ -73,6 +73,16 @@ function opts.custom_highlights(c)
     CmpItemKindFonts = { fg = c.base, bg = c.blue },
     CmpItemKindCodeium = { fg = c.base, bg = c.text },
 
+    RevMiniIconsAzure = { fg = c.base, bg = c.sapphire },
+    RevMiniIconsBlue = { fg = c.base, bg = c.blue },
+    RevMiniIconsCyan = { fg = c.base, bg = c.teal },
+    RevMiniIconsGreen = { fg = c.base, bg = c.green },
+    RevMiniIconsGrey = { fg = c.base, bg = c.text },
+    RevMiniIconsOrange = { fg = c.base, bg = c.peach },
+    RevMiniIconsPurple = { fg = c.base, bg = c.mauve },
+    RevMiniIconsRed = { fg = c.base, bg = c.red },
+    RevMiniIconsYellow = { fg = c.base, bg = c.yellow },
+
     FlashBackdrop = { fg = c.overlay0 },
     FlashCurrent = { fg = c.base, bg = c.peach },
     FlashMatch = { fg = c.base, bg = c.lavender },
