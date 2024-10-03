@@ -1,1 +1,1 @@
-{ pkgs, ... }: { home.packages = with pkgs; [ obs-studio audacity ]; }
+{ pkgs, ... }: { home.packages = with pkgs; [ obs-studio audacity kdenlive ]; }

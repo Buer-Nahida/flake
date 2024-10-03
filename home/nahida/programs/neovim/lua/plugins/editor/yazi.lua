@@ -16,7 +16,7 @@ return {
     opts = {
       open_for_directories = true,
       yazi_floating_window_border = "none",
-      floating_window_scaling_factor = 1.1,
+      floating_window_scaling_factor = 1,
       set_keymappings_function = function(yazi_buffer_id)
         for _, key in ipairs({
           "<esc>",
@@ -37,8 +37,6 @@ return {
     -- stylua: ignore
     keys = {
       { "<leader>fe", function() require("yazi").yazi() end, desc = "Explorer Yazi" },
-      { "<leader>lf", function() require("yazi").yazi(nil, LazyVim.root()) end, desc = "Explorer Yazi (Root Dir)" },
-      { "<leader>lF", function() require("yazi").yazi(nil, vim.fn.getcwd()) end, desc = "Explorer Yazi (cwd)" },
       { "<leader>e", "<leader>fe", desc = "Explorer Yazi", remap = true },
     },
   },

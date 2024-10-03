@@ -2,17 +2,14 @@
   home.sessionVariables.MOZ_USE_XINPUT2 = 1;
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = builtins.listToAttrs (map (v: {
-      name = v;
-      value = "firefox.desktop";
-    }) [
-      "text/html"
-      "application/pdf"
-      "x-scheme-handler/http"
-      "x-scheme-handler/https"
-      "x-scheme-handler/about"
-      "x-scheme-handler/unknown"
-    ]);
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "application/pdf" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+    };
   };
   programs.firefox = {
     enable = true;

@@ -14,6 +14,10 @@
       url = "github:somepaulo/MoreWaita";
       flake = false;
     };
+    get-traffic = {
+      url = "github:Buer-Nahida/get-traffic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +59,7 @@
       username = "nahida";
       homeDirectory = "/home/${username}";
       realname = "纳西妲 · Nahida";
-      email = "yanwenz551@gmail.com";
+      email = "n@naxida.me";
     in {
       nixosConfigurations."akasha" = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
