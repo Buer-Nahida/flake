@@ -128,11 +128,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1727987982,
-        "narHash": "sha256-JlaO6dExAZUZ3SyEdiahngTserTbYtOZeTsCJAFKcLk=",
+        "lastModified": 1727988238,
+        "narHash": "sha256-TzxXL8CqhnBc254JRtv+VZVGS813k/kCT9pKYTxkBNM=",
         "owner": "Buer-Nahida",
         "repo": "get-traffic",
-        "rev": "56f074d88c8bf8b0a0ae1a14c59142acf5b8bc72",
+        "rev": "90e30f6b3c7637b5264e05eefb0324e69d59549d",
         "type": "github"
       },
       "original": {
