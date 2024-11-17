@@ -2,14 +2,8 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
-    extraLuaPackages = luajitPackages:
-      with luajitPackages; [
-        luarocks
-        magick # for image.nvim
-      ];
     extraPackages = with pkgs; [
       python3 # for hererocks
-      imagemagick # for image.nvim
       lazygit # for `gg` and `gG` keymaps
       gnumake # for telescope-fzf-native.nvim
       xdg-utils # for `gx` keymap

@@ -135,7 +135,7 @@
     "Alt,         F4,        exec, hyprctl kill"
     "Super,       return,    exec, wezterm"
     "Super,       e,         exec, nautilus --new-window"
-    "Super,       w,         exec, firefox"
+    "Super,       w,         exec, firefox-nightly"
     "Super,       d,         exec, rofi -show drun"
     "Super,       v,         exec, ~/.config/rofi/clipmenu/script"
     "Super,       backslash, exec, pkill .ags-wrapped || ags"

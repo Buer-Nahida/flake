@@ -7,6 +7,7 @@
     secrets = {
       weather.path = ".secrets/weather.json";
       get-traffic.path = ".config/get-traffic/config.json";
+      "2fa".path = ".2fa";
     };
   };
 }

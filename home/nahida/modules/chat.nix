@@ -1,1 +1,3 @@
-{ pkgs, ... }: { home.packages = with pkgs; [ _64gram webcord-vencord qq ]; }
+{ pkgs, ... }: {
+  home.packages = with pkgs; [ telegram-desktop webcord-vencord qq ];
+}

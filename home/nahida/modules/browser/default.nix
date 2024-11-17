@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, ... }: {
+{ pkgs, inputs, ... }: {
   home.sessionVariables.MOZ_USE_XINPUT2 = 1;
   xdg.mimeApps = {
     enable = true;
@@ -11,25 +11,29 @@
       "x-scheme-handler/unknown" = "firefox.desktop";
     };
   };
-  programs.firefox = {
+  programs.firefox = let
+    Preferences = {
+      "gfx.webrender.all" = true;
+      "media.ffmpeg.vaapi.enabled" = true;
+      "widget.dmabuf.force-enabled" = true;
+
+      "network.http.http3.enabled" = true;
+      "browser.toolbars.bookmarks.visibility" = "never";
+      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+      "privacy.userContext.enabled" = true;
+      "privacy.userContext.ui.enabled" = true;
+      "permissions.isolateBy.userContext" = true;
+      "svg.context-properties.content.enabled" = true;
+
+      "sidebar.position_start" = false; # Sidebery on right
+    };
+  in {
     enable = true;
-    package = pkgs-stable.firefox;
+    package = inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin;
+    languagePacks = [ "zh-CN" ];
     policies = {
       DisplayBookmarksToolbar = true;
-      Preferences = {
-        "gfx.webrender.all" = true;
-        "media.ffmpeg.vaapi.enabled" = true;
-        "widget.dmabuf.force-enabled" = true;
-
-        "browser.toolbars.bookmarks.visibility" = "never";
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "privacy.userContext.enabled" = true;
-        "privacy.userContext.ui.enabled" = true;
-        "permissions.isolateBy.userContext" = true;
-        "svg.context-properties.content.enabled" = true;
-
-        "sidebar.position_start" = false; # Sidebery on right
-      };
+      inherit Preferences;
       ExtensionSettings = {
         "*" = {
           allowed_types = [ "extension" "theme" "locale" ];
@@ -38,11 +42,6 @@
           installation_mode = "blocked";
           restricted_domains = [ ];
           updates_disabled = false;
-        };
-        "langpack-zh-CN@firefox.mozilla.org" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4305510/chinese_simplified_zh_cn_la-127.0.20240618.110440.xpi";
         };
         "firefox@tampermonkey.net" = {
           installation_mode = "force_installed";
@@ -64,10 +63,10 @@
           install_url =
             "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
         };
-        "jid1-ZAdIEUB7XOzOJw@jetpack" = {
+        "{20fc2e06-e3e4-4b2b-812b-ab431220cada}" = {
           installation_mode = "force_installed";
           install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4286002/duckduckgo_for_firefox-2024.4.26.xpi";
+            "https://addons.mozilla.org/firefox/downloads/latest/startpage-private-search.xpi";
         };
         "{3c078156-979c-498b-8990-85f7987dd929}" = {
           installation_mode = "force_installed";
@@ -79,11 +78,6 @@
           install_url =
             "https://addons.mozilla.org/firefox/downloads/file/4232144/styl_us-1.5.46.xpi";
         };
-        "authenticator@r01" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4272094/two_factor_authenticator-1.3.3resigned1.xpi";
-        };
         "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
           installation_mode = "force_installed";
           install_url =
@@ -94,15 +88,15 @@
           install_url =
             "https://addons.mozilla.org/firefox/downloads/file/4290466/ublock_origin-1.58.0.xpi";
         };
-        "{4bda55a4-25fc-4958-aca3-4b3261605398}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4304175/maxfocus_link_preview-0.3.6.xpi";
-        };
         "{5efceaa7-f3a2-4e59-a54b-85319448e305}" = {
           installation_mode = "force_installed";
           install_url =
             "https://addons.mozilla.org/firefox/downloads/file/4299644/immersive_translate-1.6.2.xpi";
+        };
+        "pagesidebar@stefanvd.net" = {
+          installation_mode = "force_installed";
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/file/4363471/page_sidebar-1.2.7.xpi";
         };
         "{12eeb304-58cd-4bcb-9676-99562b04f066}" = {
           installation_mode = "force_installed";
@@ -112,20 +106,7 @@
       };
     };
     profiles.default = {
-      settings = {
-        "gfx.webrender.all" = true;
-        "media.ffmpeg.vaapi.enabled" = true;
-        "widget.dmabuf.force-enabled" = true;
-
-        "browser.toolbars.bookmarks.visibility" = "never";
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "privacy.userContext.enabled" = true;
-        "privacy.userContext.ui.enabled" = true;
-        "permissions.isolateBy.userContext" = true;
-        "svg.context-properties.content.enabled" = true;
-
-        "sidebar.position_start" = false; # Sidebery on right
-      };
+      settings = Preferences;
       userChrome = builtins.readFile ./userChrome.css;
       userContent = import ./userContent.nix pkgs.linkFarm;
     };

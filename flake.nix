@@ -10,6 +10,13 @@
     sops-nix.url = "github:Mic92/sops-nix";
     matugen.url = "github:InioX/matugen/v2.2.0";
     astal.url = "github:Aylur/astal";
+    daeuniverse.url = "github:daeuniverse/flake.nix";
+    hyprland.url =
+      "git+https://github.com/hyprwm/Hyprland?rev=4520b30d498daca8079365bdb909a8dea38e8d55&submodules=1";
+    firefox = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     more-waita = {
       url = "github:somepaulo/MoreWaita";
       flake = false;
@@ -26,14 +33,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?ref=v0.42.0&submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hypr-dynamic-cursors = {
-      url = "github:VirtCode/hypr-dynamic-cursors";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hypr-dynamic-cursors = {
+    #   url = "github:VirtCode/hypr-dynamic-cursors";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
     hyprscroller = {
       url = "github:dawsers/hyprscroller";
       inputs.hyprland.follows = "hyprland";
@@ -48,8 +51,10 @@
           "https://cache.nixos.org"
           "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
           "https://nix-community.cachix.org"
+          "https://cache.garnix.io"
         ];
         trusted-public-keys = [
+          "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -59,7 +64,7 @@
       username = "nahida";
       homeDirectory = "/home/${username}";
       realname = "纳西妲 · Nahida";
-      email = "n@naxida.me";
+      email = "yanwenz551@gmail.com";
     in {
       nixosConfigurations."akasha" = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
@@ -88,6 +93,7 @@
           { home-manager.extraSpecialArgs = specialArgs; }
           nur.nixosModules.nur
           sops-nix.nixosModules.sops
+          daeuniverse.nixosModules.dae
           hyprland.nixosModules.default
           catppuccin.nixosModules.catppuccin
           home-manager.nixosModules.home-manager

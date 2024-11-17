@@ -1,10 +1,11 @@
 { inputs, pkgs, ... }@args: {
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = with inputs; [
-      hyprscroller.packages.${pkgs.system}.hyprscroller
-      hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
-    ];
+    plugins = with inputs;
+      [
+        hyprscroller.packages.${pkgs.system}.hyprscroller
+        # hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
+      ];
     settings = import ./settings.nix args;
   };
   xdg.configFile = {

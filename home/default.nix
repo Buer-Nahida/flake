@@ -2,7 +2,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "backup";
+    backupFileExtension = "bkp";
     users.${username} = ./${username};
     extraSpecialArgs = config._module.args;
   };

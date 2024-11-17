@@ -4,8 +4,8 @@
     packages = with pkgs; [
       wqy_zenhei
       noto-fonts
-      noto-fonts-cjk
       noto-fonts-emoji
+      noto-fonts-cjk-sans
       twemoji-color-font
       mypkgs.fonts
       mypkgs.misans-fonts

@@ -10,7 +10,7 @@
     hyprpicker
     dart-sass
     brightnessctl
-    gnome.gnome-bluetooth
+    gnome-bluetooth
   ];
   programs.ags = {
     enable = true;
