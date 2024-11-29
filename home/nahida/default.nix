@@ -3,7 +3,6 @@
     dirContents ./. [ ] ++ [
       ags.homeManagerModules.default
       sops-nix.homeManagerModules.sops
-      hyprland.homeManagerModules.default
       catppuccin.homeManagerModules.catppuccin
     ];
   home = {

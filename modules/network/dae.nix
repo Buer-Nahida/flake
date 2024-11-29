@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }: {
+{ inputs, config, pkgs, ... }: {
   services.dae = {
     enable = true;
     package = inputs.daeuniverse.packages.x86_64-linux.dae-unstable;
@@ -6,5 +6,4 @@
     disableTxChecksumIpGeneric = false;
     configFile = config.sops.secrets."config.dae".path;
   };
-  networking.firewall.enable = lib.mkForce false;
 }

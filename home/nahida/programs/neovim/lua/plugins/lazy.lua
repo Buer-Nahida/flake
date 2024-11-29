@@ -5,9 +5,10 @@ vim.g.pkg_path = {
 return {
   rocks = { hererocks = false },
   spec = {
-    { "Buer-Nahida/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
     { "williamboman/mason-lspconfig.nvim", enabled = false },
+    { import = "lazyvim.plugins.extras.ai.supermaven" },
     { import = "lazyvim.plugins.extras.coding.neogen" },
     { import = "lazyvim.plugins.extras.coding.yanky" },
     { import = "lazyvim.plugins.extras.editor.mini-move" },
@@ -26,6 +27,7 @@ return {
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lsp.neoconf" },
     { import = "lazyvim.plugins.extras.test.core" },
+    { import = "lazyvim.plugins.extras.ui.dashboard-nvim" },
     { import = "lazyvim.plugins.extras.ui.edgy" },
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },

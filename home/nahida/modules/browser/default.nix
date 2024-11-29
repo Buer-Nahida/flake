@@ -43,66 +43,34 @@
           restricted_domains = [ ];
           updates_disabled = false;
         };
-        "firefox@tampermonkey.net" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4282688/tampermonkey-5.1.1.xpi";
-        };
-        "adguardadblocker@adguard.com" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4294826/adguard_adblocker-4.3.53.xpi";
-        };
-        "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4305718/catppuccin_gh_file_explorer-0.7.1.xpi";
-        };
-        "{74145f27-f039-47ce-a470-a662b129930a}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
-        };
-        "{20fc2e06-e3e4-4b2b-812b-ab431220cada}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/latest/startpage-private-search.xpi";
-        };
-        "{3c078156-979c-498b-8990-85f7987dd929}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4246774/sidebery-5.2.0.xpi";
-        };
-        "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4232144/styl_us-1.5.46.xpi";
-        };
-        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4259790/vimium_ff-2.1.2.xpi";
-        };
-        "uBlock0@raymondhill.net" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4290466/ublock_origin-1.58.0.xpi";
-        };
-        "{5efceaa7-f3a2-4e59-a54b-85319448e305}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4299644/immersive_translate-1.6.2.xpi";
-        };
-        "pagesidebar@stefanvd.net" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4363471/page_sidebar-1.2.7.xpi";
-        };
-        "{12eeb304-58cd-4bcb-9676-99562b04f066}" = {
-          installation_mode = "force_installed";
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/3954372/catppuccin_dark_sky-2.0.xpi";
-        };
+      } // builtins.mapAttrs (k: v: {
+        installation_mode = "force_installed";
+        install_url =
+          "https://addons.mozilla.org/firefox/downloads/latest/${v}";
+      }) {
+        "firefox@tampermonkey.net" = "tampermonkey.xpi";
+        "adguardadblocker@adguard.com" =
+          "https://addons.mozilla.org/firefox/downloads/latest/adguard_adblocker.xpi";
+        "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}" =
+          "https://addons.mozilla.org/firefox/downloads/latest/catppuccin_gh_file_explorer.xpi";
+        "{74145f27-f039-47ce-a470-a662b129930a}" =
+          "https://addons.mozilla.org/firefox/downloads/latest/clearurls.xpi";
+        "{20fc2e06-e3e4-4b2b-812b-ab431220cada}" =
+          "https://addons.mozilla.org/firefox/downloads/latest/startpage-private-search.xpi";
+        "{3c078156-979c-498b-8990-85f7987dd929}" =
+          "https://addons.mozilla.org/firefox/downloads/latest/sidebery.xpi";
+        "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" =
+          "https://addons.mozilla.org/firefox/downloads/latest/styl_us.xpi";
+        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" =
+          "https://addons.mozilla.org/firefox/downloads/latest/vimium_ff.xpi";
+        "uBlock0@raymondhill.net" =
+          "https://addons.mozilla.org/firefox/downloads/latest/ublock_origin.xpi";
+        "{5efceaa7-f3a2-4e59-a54b-85319448e305}" =
+          "https://addons.mozilla.org/firefox/downloads/latest/immersive_translate.xpi";
+        "pagesidebar@stefanvd.net" =
+          "https://addons.mozilla.org/firefox/downloads/latest/page_sidebar.xpi";
+        "{12eeb304-58cd-4bcb-9676-99562b04f066}" =
+          "https://addons.mozilla.org/firefox/downloads/latest/catppuccin_dark_sky.xpi";
       };
     };
     profiles.default = {

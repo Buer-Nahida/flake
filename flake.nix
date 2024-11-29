@@ -11,8 +11,6 @@
     matugen.url = "github:InioX/matugen/v2.2.0";
     astal.url = "github:Aylur/astal";
     daeuniverse.url = "github:daeuniverse/flake.nix";
-    hyprland.url =
-      "git+https://github.com/hyprwm/Hyprland?rev=4520b30d498daca8079365bdb909a8dea38e8d55&submodules=1";
     firefox = {
       url = "github:nix-community/flake-firefox-nightly";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,14 +30,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # hypr-dynamic-cursors = {
-    #   url = "github:VirtCode/hypr-dynamic-cursors";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-    hyprscroller = {
-      url = "github:dawsers/hyprscroller";
-      inputs.hyprland.follows = "hyprland";
     };
   };
 
@@ -94,7 +84,6 @@
           nur.nixosModules.nur
           sops-nix.nixosModules.sops
           daeuniverse.nixosModules.dae
-          hyprland.nixosModules.default
           catppuccin.nixosModules.catppuccin
           home-manager.nixosModules.home-manager
         ];

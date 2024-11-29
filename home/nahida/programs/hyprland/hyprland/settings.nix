@@ -76,12 +76,7 @@
   };
   decoration = {
     rounding = 0;
-    drop_shadow = false;
-    shadow_ignore_window = true;
-    shadow_range = 20;
-    shadow_offset = "0 2";
-    shadow_render_power = 2;
-    "col.shadow" = "rgba(0000001A)";
+    shadow.enabled = false;
     dim_inactive = false;
     dim_strength = 0.1;
     dim_special = 0;

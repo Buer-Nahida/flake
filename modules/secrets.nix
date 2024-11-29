@@ -7,6 +7,10 @@ in {
     secrets = {
       password.neededForUsers = true;
       nix = { };
+      mihomo = {
+        format = "binary";
+        sopsFile = ../secrets/system/mihomo;
+      };
       "config.dae" = {
         format = "binary";
         sopsFile = ../secrets/system/config.dae;

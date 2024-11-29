@@ -36,18 +36,21 @@ return {
         format = function(entry, vim_item)
           if vim.tbl_contains({ "path" }, entry.source.name) then
             local icon, hl_group = require("nvim-web-devicons").get_icon(
-              entry:get_completion_item().label
+              entry:completion_item().label
             )
             if icon then
               vim_item.kind = " " .. icon .. " "
-              vim_item.kind_hl_group = "Rev" .. hl_group
+              vim_item.kind_hl_group = hl_group and "Rev" .. hl_group
+                or "CmpItemKind"
+                  .. entry.source.name:sub(1, 2):upper()
+                  .. entry.source.name:sub(2)
               return vim_item
             end
           end
           local kind = require("lspkind").cmp_format({
             mode = "symbol_text",
             maxwidth = 60,
-            symbol_map = LazyVim.config.icons.raw_kinds,
+            symbol_map = LazyVim.config.icons.kinds,
           })(entry, vim_item)
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
           kind.kind = " " .. (strings[1] or "") .. " "

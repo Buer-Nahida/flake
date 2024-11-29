@@ -68,10 +68,8 @@ function opts.custom_highlights(c)
     CmpItemKindOperator = { fg = c.base, bg = c.blue },
     CmpItemKindTypeParameter = { fg = c.base, bg = c.blue },
     CmpItemKindCopilot = { fg = c.base, bg = c.text },
-    CmpItemKindNerdFont = { fg = c.base, bg = c.yellow },
-    CmpItemKindEmoji = { fg = c.base, bg = c.yellow },
     CmpItemKindFonts = { fg = c.base, bg = c.blue },
-    CmpItemKindCodeium = { fg = c.base, bg = c.text },
+    CmpItemKindSupermaven = { fg = c.base, bg = c.yellow },
 
     RevMiniIconsAzure = { fg = c.base, bg = c.sapphire },
     RevMiniIconsBlue = { fg = c.base, bg = c.blue },
@@ -130,8 +128,6 @@ function opts.custom_highlights(c)
   h.DropBarIconKindEvent = reverse(h.CmpItemKindEvent)
   h.DropBarIconKindOperator = reverse(h.CmpItemKindOperator)
   h.DropBarIconKindTypeParameter = reverse(h.CmpItemKindTypeParameter)
-  h.DropBarIconKindCopilot = reverse(h.CmpItemKindCopilot)
-  h.DropBarIconKindCodeium = reverse(h.CmpItemKindCodeium)
 
   return h
 end
