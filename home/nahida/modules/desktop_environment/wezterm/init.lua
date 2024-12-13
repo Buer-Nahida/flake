@@ -9,6 +9,13 @@ local function font_with_fallback(name, params)
   return wezterm.font_with_fallback(names, params)
 end
 local font_name = "JetBrainsMono Nerd Font"
+local function make_keymaps(keys_list)
+  local keymaps = {}
+  for i, key in ipairs(keys_list) do
+    keymaps[i] = { key = key[1], mods = key[2], action = key[3] }
+  end
+  return keymaps
+end
 
 return {
   -- OpenGL for GPU acceleration, Software for CPU
@@ -17,18 +24,9 @@ return {
   -- Font config
   font = font_with_fallback(font_name),
   font_rules = {
-    {
-      italic = true,
-      font = font_with_fallback(font_name, { italic = true }),
-    },
-    {
-      italic = false,
-      font = font_with_fallback(font_name, { bold = true }),
-    },
-    {
-      intensity = "Bold",
-      font = font_with_fallback(font_name, { bold = true }),
-    },
+    { italic = true, font = font_with_fallback(font_name, { italic = true }) },
+    { italic = false, font = font_with_fallback(font_name, { bold = true }) },
+    { intensity = "Bold", font = font_with_fallback(font_name, { bold = true }) },
   },
   warn_about_missing_glyphs = false,
   font_size = 12.5,
@@ -40,93 +38,33 @@ return {
   use_ime = true,
   -- Keybinds
   disable_default_key_bindings = true,
-  keys = {
-    {
-      key = "_",
-      mods = "CTRL|SHIFT",
-      action = action.SplitVertical({ domain = "CurrentPaneDomain" }),
-    },
-    {
-      key = "|",
-      mods = "CTRL|SHIFT",
-      action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-    },
-    {
-      key = "t",
-      mods = "CTRL",
-      action = action.SpawnTab("CurrentPaneDomain"),
-    },
+  keys = make_keymaps({
+    { "_", "CTRL|SHIFT", action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { "|", "CTRL|SHIFT", action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { "t", "CTRL", action.SpawnTab("CurrentPaneDomain") },
 
-    {
-      key = "w",
-      mods = "CTRL",
-      action = action.CloseCurrentPane({ confirm = false }),
-    },
+    { "w", "CTRL", action.CloseCurrentPane({ confirm = false }) },
 
-    { key = "Tab", mods = "ALT", action = action.ActivateTabRelative(1) },
-    {
-      key = "Tab",
-      mods = "ALT|SHIFT",
-      action = action.ActivateTabRelative(-1),
-    },
+    { "Tab", "ALT", action.ActivateTabRelative(1) },
+    { "Tab", "ALT|SHIFT", action.ActivateTabRelative(-1) },
 
-    {
-      key = "h",
-      mods = "CTRL|ALT",
-      action = action.ActivatePaneDirection("Left"),
-    },
-    {
-      key = "l",
-      mods = "CTRL|ALT",
-      action = action.ActivatePaneDirection("Right"),
-    },
-    {
-      key = "k",
-      mods = "CTRL|ALT",
-      action = action.ActivatePaneDirection("Up"),
-    },
-    {
-      key = "j",
-      mods = "CTRL|ALT",
-      action = action.ActivatePaneDirection("Down"),
-    },
+    { "h", "CTRL|ALT", action.ActivatePaneDirection("Left") },
+    { "l", "CTRL|ALT", action.ActivatePaneDirection("Right") },
+    { "k", "CTRL|ALT", action.ActivatePaneDirection("Up") },
+    { "j", "CTRL|ALT", action.ActivatePaneDirection("Down") },
 
-    {
-      key = "h",
-      mods = "CTRL|SHIFT|ALT",
-      action = action.AdjustPaneSize({ "Left", 1 }),
-    },
-    {
-      key = "l",
-      mods = "CTRL|SHIFT|ALT",
-      action = action.AdjustPaneSize({ "Right", 1 }),
-    },
-    {
-      key = "k",
-      mods = "CTRL|SHIFT|ALT",
-      action = action.AdjustPaneSize({ "Up", 1 }),
-    },
-    {
-      key = "j",
-      mods = "CTRL|SHIFT|ALT",
-      action = action.AdjustPaneSize({ "Down", 1 }),
-    },
+    { "h", "CTRL|SHIFT|ALT", action.AdjustPaneSize({ "Left", 1 }) },
+    { "l", "CTRL|SHIFT|ALT", action.AdjustPaneSize({ "Right", 1 }) },
+    { "k", "CTRL|SHIFT|ALT", action.AdjustPaneSize({ "Up", 1 }) },
+    { "j", "CTRL|SHIFT|ALT", action.AdjustPaneSize({ "Down", 1 }) },
 
-    { key = "v", mods = "CTRL|ALT", action = action.ActivateCopyMode },
-    {
-      key = "v",
-      mods = "CTRL|SHIFT",
-      action = action.PasteFrom("Clipboard"),
-    },
-    {
-      key = "c",
-      mods = "CTRL|SHIFT",
-      action = action.CopyTo("ClipboardAndPrimarySelection"),
-    },
-    { key = "=", mods = "CTRL", action = action.IncreaseFontSize },
-    { key = "-", mods = "CTRL", action = action.DecreaseFontSize },
-    { key = ")", mods = "CTRL|SHIFT", action = action.ResetFontSize },
-  },
+    { "v", "CTRL|ALT", action.ActivateCopyMode },
+    { "v", "CTRL|SHIFT", action.PasteFrom("Clipboard") },
+    { "c", "CTRL|SHIFT", action.CopyTo("ClipboardAndPrimarySelection") },
+    { "=", "CTRL", action.IncreaseFontSize },
+    { "-", "CTRL", action.DecreaseFontSize },
+    { ")", "CTRL|SHIFT", action.ResetFontSize },
+  }),
   -- Aesthetic Night Colorscheme
   bold_brightens_ansi_colors = true,
   -- Padding
