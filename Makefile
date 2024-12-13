@@ -4,3 +4,7 @@ rebuild:
 
 push:
 	git add -A; git commit -am "Update"; git push
+
+update:
+	cp flake.lock 'flake.lock~'
+	nix flake update

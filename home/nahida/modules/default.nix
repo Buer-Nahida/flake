@@ -1,8 +1,13 @@
-{ inputs, dirContents, pkgs, ... }: {
+{ pkgs, dirContents, ... }: {
   imports = dirContents ./. [ ];
+  programs.home-manager.enable = true;
   home.packages = with pkgs; [
-    go-2fa
-    google-cloud-sdk
-    inputs.get-traffic.packages.${system}.default
+    motrix
+    hmcl
+    obs-studio
+    audacity
+    kdenlive
+    telegram-desktop
+    qq
   ];
 }

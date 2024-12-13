@@ -81,7 +81,7 @@
           { nix.settings = nixConfig; }
           { system.stateVersion = "23.11"; }
           { home-manager.extraSpecialArgs = specialArgs; }
-          nur.nixosModules.nur
+          nur.modules.nixos.default
           sops-nix.nixosModules.sops
           daeuniverse.nixosModules.dae
           catppuccin.nixosModules.catppuccin
