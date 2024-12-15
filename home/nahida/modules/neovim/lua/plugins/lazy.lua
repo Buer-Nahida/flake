@@ -2,7 +2,6 @@ BorderStyle = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 vim.g.pkg_path = {
   ["@astro/ts-plugin"] = vim.env.HOME .. "node_modules/@astrojs/ts-plugin",
 }
-vim.g.lazyvim_blink_main = true
 return {
   rocks = { hererocks = false },
   spec = {
@@ -10,6 +9,7 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
     { "williamboman/mason-lspconfig.nvim", enabled = false },
     { import = "lazyvim.plugins.extras.ai.supermaven" },
+    { import = "lazyvim.plugins.extras.coding.blink" },
     { import = "lazyvim.plugins.extras.coding.neogen" },
     { import = "lazyvim.plugins.extras.coding.yanky" },
     { import = "lazyvim.plugins.extras.editor.mini-move" },

@@ -1,5 +1,8 @@
 { pkgs, inputs, ... }: {
-  home.sessionVariables.MOZ_USE_XINPUT2 = 1;
+  home.sessionVariables = {
+    MOZ_X11_EGL = 1;
+    MOZ_USE_XINPUT2 = 1;
+  };
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
@@ -15,7 +18,9 @@
     Preferences = {
       "gfx.webrender.all" = true;
       "media.ffmpeg.vaapi.enabled" = true;
+      "media.ffvpx.enabled" = false;
       "widget.dmabuf.force-enabled" = true;
+      "widget.wayland-dmabuf-vaapi.enabled" = true;
 
       "network.http.http3.enabled" = true;
       "browser.toolbars.bookmarks.visibility" = "never";
@@ -106,6 +111,7 @@
       };
     };
     profiles.default = {
+      id = 0;
       settings = Preferences;
       userChrome = builtins.readFile ./userChrome.css;
       userContent = import ./userContent.nix pkgs.linkFarm;

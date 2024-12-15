@@ -29,8 +29,10 @@ return {
               return require("noice").api.status.command.get()
             end,
             cond = function()
-              return package.loaded["noice"]
-                and require("noice").api.status.command.has()
+              return package.loaded["noice"] and require("noice").api.status.command.has()
+            end,
+            color = function()
+              return { fg = Snacks.util.color("Statement") }
             end,
           },
           {
@@ -38,8 +40,10 @@ return {
               return require("noice").api.status.mode.get()
             end,
             cond = function()
-              return package.loaded["noice"]
-                and require("noice").api.status.mode.has()
+              return package.loaded["noice"] and require("noice").api.status.mode.has()
+            end,
+            color = function()
+              return { fg = Snacks.util.color("Constant") }
             end,
           },
           {
@@ -49,11 +53,16 @@ return {
             cond = function()
               return package.loaded["dap"] and require("dap").status() ~= ""
             end,
+            color = function()
+              return { fg = Snacks.util.color("Debug") }
+            end,
           },
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = LazyVim.ui.fg("Special"),
+            color = function()
+              return { fg = Snacks.util.color("Special") }
+            end,
           },
         },
         lualine_c = {

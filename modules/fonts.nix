@@ -18,6 +18,7 @@
       material-symbols
       material-icons
       lexend
+      dejavu_fonts
 
       nerd-fonts.jetbrains-mono
       nerd-fonts.space-mono

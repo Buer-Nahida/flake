@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     motrix
     hmcl
-    obs-studio
     audacity
     kdenlive
     telegram-desktop

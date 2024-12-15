@@ -6,10 +6,9 @@
     nixpkgs-stable.url = "nixpkgs/24.05";
     nur.url = "github:nix-community/NUR";
     catppuccin.url = "github:catppuccin/nix";
-    ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags/v1";
     sops-nix.url = "github:Mic92/sops-nix";
     matugen.url = "github:InioX/matugen/v2.2.0";
-    astal.url = "github:Aylur/astal";
     daeuniverse.url = "github:daeuniverse/flake.nix";
     firefox = {
       url = "github:nix-community/flake-firefox-nightly";
