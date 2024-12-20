@@ -43,13 +43,6 @@ return {
       for i, button in ipairs(opts.config.center) do
         button.icon = icons[i]
       end
-      table.insert(opts.config.center, #opts.config.center, {
-        action = "Leet",
-        desc = " Leetcode" .. string.rep(" ", 34),
-        icon = " ",
-        key = "e",
-        key_format = "  %s",
-      })
     end,
   },
 }

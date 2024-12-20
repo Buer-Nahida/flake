@@ -32,9 +32,8 @@ return {
                   return "(" .. ctx.kind .. ")  "
                 end,
                 highlight = function(ctx)
-                  return require("blink.cmp.completion.windows.render.tailwind").get_hl(
-                    ctx
-                  ) or ("RevBlinkCmpKind" .. ctx.kind)
+                  return require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx)
+                    or ("RevBlinkCmpKind" .. ctx.kind)
                 end,
               },
               label_description = {
@@ -42,9 +41,8 @@ return {
                   return "     " .. ctx.label_description
                 end,
                 highlight = function(ctx)
-                  return require("blink.cmp.completion.windows.render.tailwind").get_hl(
-                    ctx
-                  ) or ("RevBlinkCmpKind" .. ctx.kind)
+                  return require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx)
+                    or ("RevBlinkCmpKind" .. ctx.kind)
                 end,
               },
             },

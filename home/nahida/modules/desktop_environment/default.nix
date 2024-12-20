@@ -5,14 +5,12 @@
       crow-translate
       mpvpaper
       icon-library
-      pkgs.dconf-editor
-      pkgs.gnome-tweaks
-      grim
+      dconf-editor
+      gnome-tweaks
       wf-recorder
       libnotify
       gnome-control-center
     ];
-
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";

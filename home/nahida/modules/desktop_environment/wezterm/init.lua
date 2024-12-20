@@ -34,7 +34,6 @@ return {
   dpi = 96.0,
   -- Cursor style
   default_cursor_style = "BlinkingUnderline",
-  -- enable_wayland = false,
   use_ime = true,
   -- Keybinds
   disable_default_key_bindings = true,

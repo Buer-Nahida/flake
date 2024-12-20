@@ -1,0 +1,151 @@
+environment {
+    DISPLAY ":0"
+    QT_IM_MODULE "fcitx"
+    XMODIFIERS "@im=fcitx"
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt5ct"
+    QT_STYLE_OVERRIDE "kvantum"
+    WLR_NO_HARDWARE_CURSORS "1"
+    WLR_NO_HARDWARE_CURSORS "1"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+}
+
+prefer-no-csd
+
+layout {
+    focus-ring {
+        width 2
+        active-gradient from="#a6e3a1" to="#74c7ec" angle=45 relative-to="workspace-view"
+        inactive-color "#45475a"
+    }
+    border { off; }
+    preset-column-widths {
+        proportion 1.0
+        proportion 0.66667
+        proportion 0.5
+        proportion 0.33333
+    }
+    default-column-width {}
+}
+
+cursor {
+    xcursor-theme "catppuccin-mocha-sky-cursors"
+    xcursor-size 36
+}
+
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S.png"
+
+hotkey-overlay { skip-at-startup; }
+
+animations {
+    workspace-switch {
+        duration-ms 300
+        curve "ease-out-cubic"
+    }
+    horizontal-view-movement {
+        duration-ms 300
+        curve "ease-out-cubic"
+    }
+    window-open {
+        duration-ms 200
+        curve "ease-out-cubic"
+    }
+    config-notification-open-close {
+        duration-ms 250
+        curve "ease-out-cubic"
+    }
+}
+
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width { proportion 1.0; }
+}
+
+binds {
+    Mod+Return { spawn "wezterm"; }
+    Mod+D      { spawn "rofi" "-show" "drun"; }
+    Mod+V      { spawn "~/.config/rofi/clipmenu/script"; }
+    Mod+W      { spawn "firefox-nightly"; }
+
+    Mod+Escape       { spawn "~/.config/niri/scripts/translate -p"; }
+    Mod+Shift+Escape { spawn "~/.config/niri/scripts/translate"; }
+
+    Mod+Alt+K            { spawn "amixer" "-Mq" "set" "Master,0" "1%+"; }
+    XF86AudioRaiseVolume { spawn "amixer" "-Mq" "set" "Master,0" "1%+"; }
+    Mod+Alt+J            { spawn "amixer" "-Mq" "set" "Master,0" "1%-"; }
+    XF86AudioLowerVolume { spawn "amixer" "-Mq" "set" "Master,0" "1%-"; }
+    Mod+Alt+M            { spawn "amixer" "set" "Master" "toggle"; }
+    XF86AudioMute        { spawn "amixer" "set" "Master" "toggle"; }
+
+    Mod+Q { close-window; }
+
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
+    Mod+L { focus-column-right; }
+
+    Mod+Ctrl+Shift+H { consume-or-expel-window-left; }
+    Mod+Ctrl+Shift+J { move-window-down-or-to-workspace-down; }
+    Mod+Ctrl+Shift+K { move-window-up-or-to-workspace-up; }
+    Mod+Ctrl+Shift+L { consume-or-expel-window-right; }
+
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+J { move-column-to-workspace-down; }
+    Mod+Shift+K { move-column-to-workspace-up; }
+    Mod+Shift+L { move-column-right; }
+
+    Mod+Shift+D { move-workspace-down; }
+    Mod+Shift+U { move-workspace-up; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+C { center-column; }
+    Mod+F { fullscreen-window; }
+
+    Mod+Ctrl+H { set-column-width "-10%"; }
+    Mod+Ctrl+J { set-window-height "+10%"; }
+    Mod+Ctrl+K { set-window-height "-10%"; }
+    Mod+Ctrl+L { set-column-width "+10%"; }
+
+    Print     { screenshot; }
+    Mod+Print { screenshot-screen; }
+
+    Mod+Alt+Q { quit; }
+}
+
+spawn-at-startup "~/.config/niri/scripts/startup"
+
+input {
+    keyboard {
+        xkb {
+            // layout "us"
+            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+        }
+
+        // You can set the keyboard repeat parameters. The defaults match wlroots and sway.
+        // Delay is in milliseconds before the repeat starts. Rate is in characters per second.
+        repeat-delay 250
+        repeat-rate 50
+
+        track-layout "global"
+    }
+    mouse {
+        // accel-speed 0.2
+        // accel-profile "flat"
+    }
+    trackpoint {
+        natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+    }
+    tablet {
+        // Set the name of the output (see below) which the tablet will map to.
+        // If this is unset or the output doesn't exist, the tablet maps to one of the
+        // existing outputs.
+        // map-to-output "HDMI-A"
+    }
+    // By default, niri will take over the power button to make it sleep
+    // instead of power off.
+    // Uncomment this if you would like to configure the power button elsewhere
+    // (i.e. logind.conf).
+    disable-power-key-handling
+}
