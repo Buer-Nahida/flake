@@ -8,19 +8,26 @@ return {
     "saghen/blink.cmp",
     opts = {
       keymap = {
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-e>"] = { "hide", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
+
         ["<A-k>"] = { "select_prev", "fallback" },
         ["<A-j>"] = { "select_next", "fallback" },
+
+        ["<Tab>"] = { "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+        ["<C-d>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-u>"] = { "scroll_documentation_down", "fallback" },
       },
       appearance = { nerd_font_variant = "normal" },
       completion = {
+        list = { selection = { preselect = false, auto_insert = false } },
         menu = {
           draw = {
             padding = 0,
-            columns = {
-              { "kind_icon" },
-              { "label" },
-              { "label_description", "kind", gaps = 1 },
-            },
+            columns = { { "kind_icon" }, { "label" }, { "label_description", "kind", gaps = 1 } },
             components = {
               kind_icon = {
                 text = function(ctx)

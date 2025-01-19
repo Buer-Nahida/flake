@@ -13,9 +13,9 @@
       extraConfig.init.defaultBranch = "main";
       delta = {
         enable = true;
-        catppuccin.enable = true;
         options.side-by-side = true;
       };
     };
   };
+  catppuccin.delta.enable = true;
 }

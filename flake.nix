@@ -2,13 +2,14 @@
   description = "Nahida's NixOS Flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/24.05";
+    nixpkgs.url = "nixpkgs/master";
+    nixpkgs-stable.url = "nixpkgs/nixos-24.11";
     nur.url = "github:nix-community/NUR";
     catppuccin.url = "github:catppuccin/nix";
     sops-nix.url = "github:Mic92/sops-nix";
     matugen.url = "github:InioX/matugen/v2.2.0";
     daeuniverse.url = "github:daeuniverse/flake.nix";
+    bi2o3.url = "github:Buer-Nahida/Bi2O3";
     firefox = {
       url = "github:nix-community/flake-firefox-nightly";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,10 +20,6 @@
     };
     get-traffic = {
       url = "github:Buer-Nahida/get-traffic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    wezterm = {
-      url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {

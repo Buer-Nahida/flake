@@ -2,15 +2,17 @@
   catppuccin = {
     accent = "sky";
     flavor = "mocha";
-    pointerCursor.enable = true;
+    cursors.enable = true;
+    kvantum.enable = true;
+    gtk = {
+      icon.enable = true;
+      tweaks = [ "normal" "float" ];
+    };
   };
   qt = {
     enable = true;
     platformTheme.name = "kvantum";
-    style = {
-      name = "kvantum";
-      catppuccin.enable = true;
-    };
+    style.name = "kvantum";
   };
   home.pointerCursor = {
     gtk.enable = true;
@@ -21,12 +23,6 @@
   };
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      icon.enable = true;
-      gnomeShellTheme = true;
-      tweaks = [ "normal" "float" ];
-    };
     font = {
       package = mypkgs.fonts;
       name = "FZLanTingYuan-DB-GBK";

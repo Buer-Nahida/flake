@@ -1,1 +1,0 @@
-{ programs.niri.enable = true; }

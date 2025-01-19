@@ -12,21 +12,21 @@ return {
       ["Find Subword Under"] = "<C-n>",
       ["Select Cursor Down"] = "<M-C-S-j>",
       ["Select Cursor Up"] = "<M-C-S-k>",
-      ["Select All"] = "<leader>mA",
-      ["start Regex Search"] = "<leader>m/",
+      ["Select All"] = "<leader>vA",
+      ["start Regex Search"] = "<leader>v/",
       ["Add Cursor Down"] = "<C-S-j>",
       ["Add Cursor Up"] = "<C-S-k>",
-      ["Add Cursor At Pos"] = "<leader>ma",
-      ["Visual Regex"] = "<leader>m/",
-      ["Visual All"] = "<leader>mA",
-      ["Visual Add"] = "<leader>ma",
-      ["Visual Find"] = "<leader>mf",
-      ["Visual Cursors"] = "<leader>mc",
+      ["Add Cursor At Pos"] = "<leader>va",
+      ["Visual Regex"] = "<leader>v/",
+      ["Visual All"] = "<leader>vA",
+      ["Visual Add"] = "<leader>va",
+      ["Visual Find"] = "<leader>vf",
+      ["Visual Cursors"] = "<leader>vc",
     }
     vim.g.VM_Mono_hl = "FlashLabel"
     vim.g.VM_Extend_hl = "FlashCurrent"
     vim.g.VM_Cursor_hl = "FlashLabel"
     vim.g.VM_Insert_hl = "FlashCurrent"
-    wk.add({ "<leader>m", group = "+visual-multi", mode = { "n", "x" } })
+    wk.add({ "<leader>v", group = "+visual-multi", mode = { "n", "x" } })
   end,
 }

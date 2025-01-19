@@ -5,6 +5,6 @@
     initLua = ./init.lua;
     settings = import ./yazi.nix;
     keymap = import ./keymap.nix;
-    catppuccin.enable = true;
   };
+  catppuccin.yazi.enable = true;
 }

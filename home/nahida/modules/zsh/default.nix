@@ -56,13 +56,10 @@
         share = true;
       };
     };
-    fzf = {
-      enable = true;
-      catppuccin.enable = true;
-    };
+    fzf.enable = true;
     yazi.enableZshIntegration = true;
-    wezterm.enableZshIntegration = true;
   };
+  catppuccin.fzf.enable = true;
   xdg.configFile = {
     "zsh/p10k.zsh".source = ./config/p10k.zsh;
     "zsh/github_ssh_agent_autostart.zsh".source =

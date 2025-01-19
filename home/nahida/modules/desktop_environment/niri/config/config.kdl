@@ -13,6 +13,7 @@ environment {
 prefer-no-csd
 
 layout {
+    gaps 9
     focus-ring {
         width 2
         active-gradient from="#a6e3a1" to="#74c7ec" angle=45 relative-to="workspace-view"
@@ -62,10 +63,11 @@ window-rule {
 }
 
 binds {
-    Mod+Return { spawn "wezterm"; }
+    Mod+Return { spawn "kitty"; }
     Mod+D      { spawn "rofi" "-show" "drun"; }
     Mod+V      { spawn "~/.config/rofi/clipmenu/script"; }
     Mod+W      { spawn "firefox-nightly"; }
+    Mod+E      { spawn "nautilus"; }
 
     Mod+Escape       { spawn "~/.config/niri/scripts/translate -p"; }
     Mod+Shift+Escape { spawn "~/.config/niri/scripts/translate"; }
@@ -106,8 +108,8 @@ binds {
     Mod+Ctrl+K { set-window-height "-10%"; }
     Mod+Ctrl+L { set-column-width "+10%"; }
 
-    Print     { screenshot; }
-    Mod+Print { screenshot-screen; }
+    Mod+Print { screenshot; }
+    Print     { screenshot-screen; }
 
     Mod+Alt+Q { quit; }
 }

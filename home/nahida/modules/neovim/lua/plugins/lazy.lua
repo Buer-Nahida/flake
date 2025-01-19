@@ -2,41 +2,60 @@ BorderStyle = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 vim.g.pkg_path = {
   ["@astro/ts-plugin"] = vim.env.HOME .. "node_modules/@astrojs/ts-plugin",
 }
+local function gen_extra(prefix)
+  return setmetatable({}, {
+    __index = function(_, k)
+      return { import = "lazyvim.plugins.extras." .. prefix .. "." .. k }
+    end,
+  })
+end
+local ai = gen_extra("ai")
+local lang = gen_extra("lang")
+local coding = gen_extra("coding")
+local editor = gen_extra("editor")
+local formatting = gen_extra("formatting")
+local lsp = gen_extra("lsp")
+local test = gen_extra("test")
+local ui = gen_extra("ui")
+local util = gen_extra("util")
 return {
   rocks = { hererocks = false },
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
     { "williamboman/mason-lspconfig.nvim", enabled = false },
-    { import = "lazyvim.plugins.extras.ai.copilot" },
-    { import = "lazyvim.plugins.extras.ai.copilot-chat" },
-    { import = "lazyvim.plugins.extras.coding.blink" },
-    { import = "lazyvim.plugins.extras.coding.neogen" },
-    { import = "lazyvim.plugins.extras.coding.yanky" },
-    { import = "lazyvim.plugins.extras.editor.mini-move" },
-    { import = "lazyvim.plugins.extras.editor.overseer" },
-    { import = "lazyvim.plugins.extras.editor.refactoring" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
-    { import = "lazyvim.plugins.extras.lang.git" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.lang.nix" },
-    { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.lang.toml" },
-    { import = "lazyvim.plugins.extras.lang.yaml" },
-    { import = "lazyvim.plugins.extras.lang.astro" },
-    { import = "lazyvim.plugins.extras.lang.tailwind" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lsp.neoconf" },
-    { import = "lazyvim.plugins.extras.test.core" },
-    { import = "lazyvim.plugins.extras.ui.dashboard-nvim" },
-    { import = "lazyvim.plugins.extras.ui.edgy" },
-    { import = "lazyvim.plugins.extras.ui.indent-blankline" },
-    { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
-    { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-    { import = "lazyvim.plugins.extras.util.octo" },
-    { import = "lazyvim.plugins.extras.util.project" },
+    ai.copilot,
+    ai["copilot-chat"],
+    coding.blink,
+    coding.neogen,
+    coding.yanky,
+    editor["mini-move"],
+    editor.overseer,
+    editor.refactoring,
+    editor.snacks_picker,
+    formatting.prettier,
+    lang.sql,
+    lang.python,
+    lang.git,
+    lang.json,
+    lang.markdown,
+    lang.nix,
+    lang.rust,
+    lang.toml,
+    lang.yaml,
+    lang.astro,
+    lang.tailwind,
+    lang.typescript,
+    lsp.neoconf,
+    test.core,
+    ui["dashboard-nvim"],
+    ui.edgy,
+    ui["indent-blankline"],
+    ui["mini-indentscope"],
+    ui["treesitter-context"],
+    util["mini-hipatterns"],
+    util.octo,
+    util.project,
     { import = "plugins.coding" },
     { import = "plugins.editor" },
     { import = "plugins.lsp" },

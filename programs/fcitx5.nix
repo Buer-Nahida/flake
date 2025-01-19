@@ -4,7 +4,13 @@
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
-      addons = with pkgs; [ fcitx5-chinese-addons mypkgs.fcitx5-theme ];
+      addons = with pkgs; [
+        (fcitx5-rime.override { rimeDataPkgs = [ mypkgs.rime-ice ]; })
+        librime
+        librime-lua
+        fcitx5-gtk
+        mypkgs.fcitx5-theme
+      ];
     };
   };
 }

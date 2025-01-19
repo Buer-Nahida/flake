@@ -2,6 +2,11 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+    extraLuaPackages = ps:
+      with ps;
+      [
+        tiktoken_core # for `ai.copilot-chat`
+      ];
     extraPackages = with pkgs; [
       python3 # for hererocks
       lazygit # for `gg` and `gG` keymaps
@@ -9,6 +14,8 @@
       xdg-utils # for `gx` keymap
       nodePackages_latest.prettier # for `formatting.prettier`
       nodePackages_latest.npm # for mason.nvim
+      # for `ai.copilot-chat`
+      lynx
       # for nvim-treesitter
       gcc
       curl

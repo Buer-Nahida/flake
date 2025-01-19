@@ -7,7 +7,7 @@ return {
   },
   keys = {
     {
-      "<leader>a",
+      "<leader>m",
       function()
         require("antonym").change()
       end,

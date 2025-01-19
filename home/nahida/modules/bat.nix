@@ -1,6 +1,4 @@
 {
-  programs.bat = {
-    enable = true;
-    catppuccin.enable = true;
-  };
+  programs.bat.enable = true;
+  catppuccin.bat.enable = true;
 }

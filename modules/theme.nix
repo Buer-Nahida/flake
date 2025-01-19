@@ -8,5 +8,5 @@
     gfxmodeEfi = "1920x1080,auto";
     gfxmodeBios = gfxmodeEfi;
   };
-  console.catppuccin.enable = true;
+  catppuccin.tty.enable = true;
 }
