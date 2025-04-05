@@ -1,4 +1,5 @@
-{ options, ... }: {
+{ options, ... }:
+{
   time.timeZone = "Asia/Shanghai";
   networking.timeServers = [
     "0.cn.pool.ntp.org"

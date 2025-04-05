@@ -35,8 +35,24 @@
   sub-font = "sans-serif"; # 未指定样式的字幕字体
   sub-border-size = 2; # 未指定样式的字幕边框
   sub-ass-force-margins = false; # 不强制外挂ass字幕可使用黑边
-  alang = [ "zh" "chs" "sc" "zh-hans" "chi" "en" "eng" ]; # 指定优先使用音轨
-  slang = [ "zh" "chs" "sc" "zh-hans" "chi" "en" "eng" ]; # 指定优先使用字幕轨
+  alang = [
+    "zh"
+    "chs"
+    "sc"
+    "zh-hans"
+    "chi"
+    "en"
+    "eng"
+  ]; # 指定优先使用音轨
+  slang = [
+    "zh"
+    "chs"
+    "sc"
+    "zh-hans"
+    "chi"
+    "en"
+    "eng"
+  ]; # 指定优先使用字幕轨
   loop-playlist = "inf"; # 列表播放循环方式，N|inf|no，循环N次/一直循环/不循环
   volume = 100; # 启动默认音量
   volume-max = 100; # 程序最大音量[100,1000]
@@ -45,8 +61,7 @@
 
   save-position-on-quit = true; # 退出时记住播放状态（包括是否暂停、音量、播放速度、位置等）
   watch-later-directory = "~~/.cache/mpv/watch-later"; # 播放状态保存目录
-  watch-later-options-remove =
-    "pause"; # 不记录是否暂停（除了pause同理可写fullscreen,mute,speed,ontop等参数）
+  watch-later-options-remove = "pause"; # 不记录是否暂停（除了pause同理可写fullscreen,mute,speed,ontop等参数）
   no-input-builtin-bindings = true; # 禁用内置快捷键方案，builtin与default相比不影响脚本的预设快捷键
   osc = false; # 关闭简易控制面板On Screen Controller(osc)
   load-stats-overlay = false; # 禁用内建stats.lua脚本

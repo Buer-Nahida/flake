@@ -39,8 +39,7 @@
   F9 = "show-text \${track-list}"; # 显示轨道
   F10 = ''playlist-shuffle; show-text "playlist-shuffle"''; # 乱序播放列表
   INS = "script-message-to console type \"loadfile '';keypress ESC\" 11";
-  DEL =
-    "script-message-to console type \"playlist-play-index '';keypress ESC\" 22"; # 序号从0开始
+  DEL = "script-message-to console type \"playlist-play-index '';keypress ESC\" 22"; # 序号从0开始
 
   z = "set speed 1.0"; # 播放速度设为1
   Z = "set speed 2.5"; # 播放速度设为2.5
@@ -56,8 +55,7 @@
   m = "add sub-pos +1"; # 字幕下移1单位
   "," = "add sub-scale -0.05"; # 字幕缩小5%
   "." = "add sub-scale +0.05"; # 字幕放大5%
-  "/" =
-    "set sub-pos 100;set sub-scale 1;set audio-delay 0;set sub-delay 0"; # 复原字幕位置&大小&延迟 与 音频延迟
+  "/" = "set sub-pos 100;set sub-scale 1;set audio-delay 0;set sub-delay 0"; # 复原字幕位置&大小&延迟 与 音频延迟
 
   a = "cycle audio"; # 切换音轨
   s = "cycle sub"; # 切换字幕轨
@@ -67,8 +65,7 @@
   G = "cycle border"; # 切换无边框
   H = ''cycle-values hwdec "auto" "no"''; # 切换硬解软解
   j = "cycle deinterlace"; # 切换反交错
-  k =
-    ''cycle-values video-aspect-override "16:9" "4:3" "2.35:1" "-1"''; # 循环视频比例
+  k = ''cycle-values video-aspect-override "16:9" "4:3" "2.35:1" "-1"''; # 循环视频比例
   l = "ab-loop"; # 设置/清除 A-B loop点
   K = "cycle-values loop-file inf no"; # 切换文件循环
   L = "cycle-values loop-playlist inf no"; # 切换列表循环
@@ -86,10 +83,10 @@
   i = "add saturation 1"; # 饱和度+1
   o = "add hue -1"; # 色调-1
   p = "add hue 1"; # 色调+1
-  "[" = ''
-    set contrast 0; set brightness 0; set gamma 0; set saturation 0; set hue 0;show-text "视频均衡器归零"''; # 视频均衡器归零
-  "]" = ''
-    show-text "速度=''${speed} 置顶=''${ontop} 字幕延迟=''${sub-delay}  音频延迟=''${audio-delay}   单循环=''${loop-file}  全循环=''${loop-playlist}  亮度=''${brightness}  对比度=''${contrast}  伽马=''${gamma}  饱和度=''${saturation}  色调=''${hue}"''; # 显示状态信息
+  "[" =
+    ''set contrast 0; set brightness 0; set gamma 0; set saturation 0; set hue 0;show-text "视频均衡器归零"''; # 视频均衡器归零
+  "]" =
+    ''show-text "速度=''${speed} 置顶=''${ontop} 字幕延迟=''${sub-delay}  音频延迟=''${audio-delay}   单循环=''${loop-file}  全循环=''${loop-playlist}  亮度=''${brightness}  对比度=''${contrast}  伽马=''${gamma}  饱和度=''${saturation}  色调=''${hue}"''; # 显示状态信息
   "\\" = "show-progress"; # 显示播放进度
 
   "`" = "script-binding console/enable"; # 打开控制台，ESC退出
@@ -102,8 +99,7 @@
   "7" = "add video-zoom 0.01"; # 放大视频
   "8" = "add panscan -0.1"; # 减少裁剪
   "9" = "add panscan 0.1"; # 裁剪视频减少黑边
-  "0" = ''
-    cycle-values "!reverse" video-rotate "no" "90" "180" "270"''; # 反向 不旋转/90/180/270
+  "0" = ''cycle-values "!reverse" video-rotate "no" "90" "180" "270"''; # 反向 不旋转/90/180/270
 
   # 调整视频对齐位置
   "ALT+a" = "add video-align-x -0.1";
@@ -111,30 +107,25 @@
   "ALT+s" = "add video-align-y -0.1";
   "ALT+w" = "add video-align-y 0.1";
 
-  "-" =
-    "set video-zoom 0; set panscan 0; set video-align-x 0; set video-align-y 0"; # 重设缩放\裁剪\位置
+  "-" = "set video-zoom 0; set panscan 0; set video-align-x 0; set video-align-y 0"; # 重设缩放\裁剪\位置
   "+" = "screenshot window"; # 带界面（OSC/OSD）截图
   "=" = "screenshot video"; # 视频截图
 
   # 着色器
-  "CTRL+`" = ''
-    no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"''; # 清除着色器
-  "CTRL+1" = ''
-    no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl;~~/shaders/Anime4K_Restore_CNN_S.glsl;~~/shaders/Anime4K_Upscale_CNN_x2_S.glsl;~~/shaders/Anime4K_AutoDownscalePre_x2.glsl;~~/shaders/Anime4K_AutoDownscalePre_x4.glsl;~~/shaders/Anime4K_Upscale_CNN_x2_S.glsl"; show-text "Anime4K: Mode A- (Fast)"'';
-  "CTRL+2" = ''
-    no-osd change-list glsl-shaders add "~~/shaders/Anime4K_Thin_HQ.glsl";show-text "Anime4K_Thin_HQ" '';
-  "CTRL+3" = ''
-    no-osd change-list glsl-shaders add "~~/shaders/KrigBilateral.glsl";show-text "KrigBilateral"'';
-  "CTRL+4" = ''
-    no-osd change-list glsl-shaders add "~~/shaders/FSR.glsl";show-text "AMD FSR"'';
-  "CTRL+5" = ''
-    no-osd change-list glsl-shaders add "~~/shaders/CAS-scaled.glsl";show-text "AMD CAS-scaled"'';
-  "CTRL+6" = ''
-    no-osd change-list glsl-shaders add "~~/shaders/CAS.glsl";show-text "AMD CAS"'';
-  "CTRL+7" = ''
-    no-osd change-list glsl-shaders add "~~/shaders/NVScaler.glsl";show-text "NVScaler"'';
-  "CTRL+8" = ''
-    no-osd change-list glsl-shaders add "~~/shaders/NVSharpen.glsl";show-text "NVSharpen"'';
-  "CTRL+9" = ''
-    no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Restore_CNN_S.glsl"; show-text "Anime4K_Restore_S"'';
+  "CTRL+`" = ''no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"''; # 清除着色器
+  "CTRL+1" =
+    ''no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Clamp_Highlights.glsl;~~/shaders/Anime4K_Restore_CNN_S.glsl;~~/shaders/Anime4K_Upscale_CNN_x2_S.glsl;~~/shaders/Anime4K_AutoDownscalePre_x2.glsl;~~/shaders/Anime4K_AutoDownscalePre_x4.glsl;~~/shaders/Anime4K_Upscale_CNN_x2_S.glsl"; show-text "Anime4K: Mode A- (Fast)"'';
+  "CTRL+2" =
+    ''no-osd change-list glsl-shaders add "~~/shaders/Anime4K_Thin_HQ.glsl";show-text "Anime4K_Thin_HQ" '';
+  "CTRL+3" =
+    ''no-osd change-list glsl-shaders add "~~/shaders/KrigBilateral.glsl";show-text "KrigBilateral"'';
+  "CTRL+4" = ''no-osd change-list glsl-shaders add "~~/shaders/FSR.glsl";show-text "AMD FSR"'';
+  "CTRL+5" =
+    ''no-osd change-list glsl-shaders add "~~/shaders/CAS-scaled.glsl";show-text "AMD CAS-scaled"'';
+  "CTRL+6" = ''no-osd change-list glsl-shaders add "~~/shaders/CAS.glsl";show-text "AMD CAS"'';
+  "CTRL+7" = ''no-osd change-list glsl-shaders add "~~/shaders/NVScaler.glsl";show-text "NVScaler"'';
+  "CTRL+8" =
+    ''no-osd change-list glsl-shaders add "~~/shaders/NVSharpen.glsl";show-text "NVSharpen"'';
+  "CTRL+9" =
+    ''no-osd change-list glsl-shaders set "~~/shaders/Anime4K_Restore_CNN_S.glsl"; show-text "Anime4K_Restore_S"'';
 }

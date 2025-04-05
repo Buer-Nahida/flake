@@ -1,10 +1,15 @@
-callPackage:
+callPackage: callKernelModule:
 let
-  dir = builtins.readDir ./.;
-  filteredDir = removeAttrs dir [ "default.nix" ];
-  filesList = builtins.attrNames filteredDir;
-  genPackage = name: {
-    inherit name;
-    value = callPackage ./${name} { };
-  };
-in builtins.listToAttrs (map genPackage filesList)
+  genPackages =
+    dir: callPackage:
+    builtins.listToAttrs (
+      map (name: {
+        inherit name;
+        value = callPackage (./${dir}/${name}) { };
+      }) (builtins.attrNames (builtins.readDir ./${dir}))
+    );
+
+  normal = "normal";
+  kernelModules = "kernel-modules";
+in
+(genPackages normal callPackage) // (genPackages kernelModules callKernelModule)

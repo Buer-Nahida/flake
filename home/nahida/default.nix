@@ -1,8 +1,17 @@
-{ inputs, dirContents, username, homeDirectory, ... }: {
-  imports = with inputs;
-    dirContents ./. [ ] ++ [
+{
+  inputs,
+  dirContents,
+  username,
+  homeDirectory,
+  ...
+}:
+{
+  imports =
+    with inputs;
+    dirContents ./. [ ]
+    ++ [
       sops-nix.homeManagerModules.sops
-      catppuccin.homeManagerModules.catppuccin
+      catppuccin.homeModules.catppuccin
     ];
   home = {
     inherit username homeDirectory;

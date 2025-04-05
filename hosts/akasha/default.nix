@@ -1,1 +1,4 @@
-{ dirContents, ... }: { imports = dirContents ./. [ ]; }
+{ dirContents, ... }:
+{
+  imports = dirContents ./. [ ];
+}

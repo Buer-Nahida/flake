@@ -24,6 +24,10 @@ return {
       appearance = { nerd_font_variant = "normal" },
       completion = {
         list = { selection = { preselect = false, auto_insert = false } },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 50,
+        },
         menu = {
           draw = {
             padding = 0,
@@ -39,8 +43,7 @@ return {
                   return "(" .. ctx.kind .. ")  "
                 end,
                 highlight = function(ctx)
-                  return require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx)
-                    or ("RevBlinkCmpKind" .. ctx.kind)
+                  return "RevBlinkCmpKind" .. ctx.kind
                 end,
               },
               label_description = {
@@ -48,8 +51,7 @@ return {
                   return "     " .. ctx.label_description
                 end,
                 highlight = function(ctx)
-                  return require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx)
-                    or ("RevBlinkCmpKind" .. ctx.kind)
+                  return "RevBlinkCmpKind" .. ctx.kind
                 end,
               },
             },

@@ -1,31 +1,29 @@
 BorderStyle = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
-vim.g.pkg_path = {
-  ["@astro/ts-plugin"] = vim.env.HOME .. "node_modules/@astrojs/ts-plugin",
-}
-local function gen_extra(prefix)
+
+local function generate(prefix)
   return setmetatable({}, {
     __index = function(_, k)
       return { import = "lazyvim.plugins.extras." .. prefix .. "." .. k }
     end,
   })
 end
-local ai = gen_extra("ai")
-local lang = gen_extra("lang")
-local coding = gen_extra("coding")
-local editor = gen_extra("editor")
-local formatting = gen_extra("formatting")
-local lsp = gen_extra("lsp")
-local test = gen_extra("test")
-local ui = gen_extra("ui")
-local util = gen_extra("util")
+local ai = generate("ai")
+local lang = generate("lang")
+local coding = generate("coding")
+local editor = generate("editor")
+local formatting = generate("formatting")
+local lsp = generate("lsp")
+local test = generate("test")
+local ui = generate("ui")
+local util = generate("util")
 return {
   rocks = { hererocks = false },
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
     { "williamboman/mason-lspconfig.nvim", enabled = false },
-    ai.copilot,
     ai["copilot-chat"],
+    ai.supermaven,
     coding.blink,
     coding.neogen,
     coding.yanky,
@@ -43,7 +41,6 @@ return {
     lang.rust,
     lang.toml,
     lang.yaml,
-    lang.astro,
     lang.tailwind,
     lang.typescript,
     lsp.neoconf,

@@ -1,4 +1,5 @@
-{ config, username, ... }: {
+{ config, username, ... }:
+{
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

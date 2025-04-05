@@ -1,10 +1,10 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   programs.neovim = {
     enable = true;
     vimAlias = true;
-    extraLuaPackages = ps:
-      with ps;
-      [
+    extraLuaPackages =
+      ps: with ps; [
         tiktoken_core # for `ai.copilot-chat`
       ];
     extraPackages = with pkgs; [
@@ -37,38 +37,45 @@
       nur.repos.etu.github-markdown-toc
       ## nix
       nil
-      nixfmt-classic
+      nixfmt-rfc-style
       ## rust
-      vscode-extensions.vadimcn.vscode-lldb
       rust-analyzer
       rustfmt
       taplo # # toml
       yaml-language-server # # yaml
       # typescript
       typescript
-      (vscode-js-debug.overrideAttrs
-        (_: { meta.mainProgram = "js-debug-adapter"; }))
+      (vscode-js-debug.overrideAttrs (_: {
+        meta.mainProgram = "js-debug-adapter";
+      }))
     ];
     plugins = with pkgs.vimPlugins; [ lazy-nvim ];
-    extraLuaConfig = let
-      plugins = with pkgs.vimPlugins; [ codeium-nvim markdown-preview-nvim ];
-      mkEntryFromDrv = drv:
-        if lib.isDerivation drv then {
-          name = "${lib.getName drv}";
-          path = drv;
-        } else
-          drv;
-      lazyPath =
-        pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
-    in ''
-      local lazyconf = require("plugins.lazy")
-      lazyconf.dev = {
-        path = "${lazyPath}",
-        patterns = { "." },
-        fallback = true,
-      }
-      require("lazy").setup(lazyconf)
-    '';
+    extraLuaConfig =
+      let
+        plugins = with pkgs.vimPlugins; [
+          codeium-nvim
+          markdown-preview-nvim
+        ];
+        mkEntryFromDrv =
+          drv:
+          if lib.isDerivation drv then
+            {
+              name = "${lib.getName drv}";
+              path = drv;
+            }
+          else
+            drv;
+        lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
+      in
+      ''
+        local lazyconf = require("config.lazy")
+        lazyconf.dev = {
+          path = "${lazyPath}",
+          patterns = { "." },
+          fallback = true,
+        }
+        require("lazy").setup(lazyconf)
+      '';
   };
 
   xdg.configFile."nvim/lua".source = ./lua;

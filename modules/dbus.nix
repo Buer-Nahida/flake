@@ -1,1 +1,4 @@
-{ pkgs, ... }: { services.dbus.packages = [ pkgs.gcr ]; }
+{ pkgs, ... }:
+{
+  services.dbus.packages = [ pkgs.gcr ];
+}

@@ -27,7 +27,7 @@ return {
     },
   },
   {
-    "nvim-lspconfig",
+    "neovim/nvim-lspconfig",
     opts = function()
       require("lspconfig.ui.windows").default_options.border = BorderStyle
     end,

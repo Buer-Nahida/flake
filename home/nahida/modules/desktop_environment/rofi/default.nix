@@ -1,8 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   xdg.configFile."rofi".source = ./config;
   programs.rofi = {
     enable = true;
-    package = with pkgs;
+    package =
+      with pkgs;
       rofi-wayland.overrideAttrs (_: rec {
         version = "93ad86da10b1747f4e584bc6bfbfbc3eddb280a3";
         src = fetchFromGitHub {

@@ -1,12 +1,18 @@
-{ pkgs, dirContents, ... }: {
+{
+  pkgs,
+  dirContents,
+  ...
+}:
+{
   imports = dirContents ./. [ ];
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
     motrix
     hmcl
+    modrinth-app
     audacity
-    kdenlive
-    telegram-desktop
     qq
+    telegram-desktop
+    ffmpeg
   ];
 }

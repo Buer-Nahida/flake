@@ -1,4 +1,5 @@
-{ mypkgs, pkgs, ... }: {
+{ mypkgs, pkgs, ... }:
+{
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
@@ -26,7 +27,10 @@
     fontconfig = {
       cache32Bit = true;
       useEmbeddedBitmaps = true;
-      defaultFonts.emoji = [ "Noto Color Emoji" "Twemoji Color Emoji" ];
+      defaultFonts.emoji = [
+        "Noto Color Emoji"
+        "Twemoji Color Emoji"
+      ];
     };
   };
 }

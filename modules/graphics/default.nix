@@ -1,4 +1,5 @@
-{ dirContents, ... }: {
+{ dirContents, ... }:
+{
   imports = dirContents ./. [ ];
   hardware.graphics = {
     enable = true;

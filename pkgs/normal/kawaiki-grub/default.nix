@@ -2,13 +2,15 @@
 let
   screen = "1080p";
   icon = "white";
-  screen_fallback = if screen == "ultrawide" then
-    "1080p"
-  else if screen == "ultrawide2k" then
-    "2k"
-  else
-    screen;
-in stdenvNoCC.mkDerivation rec {
+  screen_fallback =
+    if screen == "ultrawide" then
+      "1080p"
+    else if screen == "ultrawide2k" then
+      "2k"
+    else
+      screen;
+in
+stdenvNoCC.mkDerivation rec {
   pname = "kawaiki-grub";
   version = "48ecdab39dc3174fb507770b794de8b1b823ca39";
   src = fetchFromGitHub {

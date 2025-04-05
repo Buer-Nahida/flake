@@ -1,4 +1,10 @@
-{ config, username, homeDirectory, ... }: {
+{
+  config,
+  username,
+  homeDirectory,
+  ...
+}:
+{
   users = {
     mutableUsers = false;
     users = {
@@ -9,7 +15,17 @@
         createHome = true;
         home = homeDirectory;
         group = "wheel";
-        extraGroups = [ "root" "adm" "pipewire" "audio" "video" "input" ];
+        extraGroups = [
+          "root"
+          "adm"
+          "pipewire"
+          "audio"
+          "video"
+          "input"
+          "log"
+          "systemd-journal"
+          "uucp"
+        ];
         hashedPasswordFile = config.sops.secrets.password.path;
       };
       root.hashedPasswordFile = config.sops.secrets.password.path;

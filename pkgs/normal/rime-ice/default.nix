@@ -1,13 +1,18 @@
-{ lib, stdenvNoCC, fetchFromGitHub, unstableGitUpdater, }:
+{
+  lib,
+  stdenvNoCC,
+  fetchFromGitHub,
+  unstableGitUpdater,
+}:
 stdenvNoCC.mkDerivation rec {
   pname = "rime-ice";
-  version = "2024.12.12";
+  version = "main";
 
   src = fetchFromGitHub {
     owner = "iDvel";
     repo = "rime-ice";
     rev = version;
-    hash = "sha256-2QZdlLGZwWIesbjYTE/2yhM1hHGVVp7jR02bR0oqxV0=";
+    hash = "sha256-s3r8cdEliiPnKWs64Wgi0rC9Ngl1mkIrLnr2tIcyXWw=";
   };
 
   installPhase = ''
@@ -28,6 +33,9 @@ stdenvNoCC.mkDerivation rec {
     homepage = "https://github.com/iDvel/rime-ice";
     license = lib.licenses.gpl3Only;
     platforms = lib.platforms.all;
-    maintainers = with lib.maintainers; [ xddxdd luochen1990 ];
+    maintainers = with lib.maintainers; [
+      xddxdd
+      luochen1990
+    ];
   };
 }

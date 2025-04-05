@@ -1,6 +1,6 @@
 local accent = "sky"
 local opts = {
-  compile_path = "/tmp/nvim/catppuccin",
+  compile_path = "/tmp/catppuccin",
 
   term_colors = true,
   transparent_background = true,
@@ -41,18 +41,14 @@ function opts.custom_highlights(c)
     FlashMatch = { fg = c.base, bg = c.lavender },
     FlashLabel = { fg = c.base, bg = c.green, style = { "bold" } },
 
-    TelescopePromptTitle = { fg = c.green, bg = c.none },
-    TelescopePromptBorder = { fg = c.none, bg = c.green },
-    TelescopeResultsBorder = { link = "TelescopePromptBorder" },
-    TelescopeResultsTitle = { link = "TelescopePromptTitle" },
-    TelescopeSelectionCaret = { fg = c.green },
-    TelescopeMatching = { fg = c.none },
-    TelescopeNormal = { bg = c.none },
-    TelescopePromptPrefix = { fg = c.green, bg = c.none },
-    TelescopePreviewBorder = { fg = c.none, bg = c.green },
-    TelescopeSelection = { fg = c.green, bg = c.none, style = { "bold" } },
-
     DropBarIconUISeparator = { fg = c.overlay0 },
+
+    MultiCursorCursor = { link = "Cursor" },
+    MultiCursorVisual = { link = "Visual" },
+    MultiCursorSign = { link = "SignColumn" },
+    MultiCursorDisabledCursor = { link = "Visual" },
+    MultiCursorDisabledVisual = { link = "Visual" },
+    MultiCursorDisabledSign = { link = "SignColumn" },
   }
   for k, v in pairs({
     Snippet = { fg = c.base, bg = c.mauve },

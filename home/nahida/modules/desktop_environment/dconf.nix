@@ -1,5 +1,6 @@
 { lib, ... }:
-with lib.hm.gvariant; {
+with lib.hm.gvariant;
+{
   dconf.settings = {
     "org/gnome/desktop/interface".show-battery-percentage = true;
     "org/gnome/shell/app-switcher".current-workspace-only = false;
@@ -7,7 +8,12 @@ with lib.hm.gvariant; {
     "org/gnome/TextEditor".keybindings = "nvim";
     "org/gnome/desktop/session".idle-delay = mkUint32 0;
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "zh" ]) ];
+      sources = [
+        (mkTuple [
+          "xkb"
+          "zh"
+        ])
+      ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
     "org/gnome/desktop/peripherals/touchpad" = {
@@ -80,12 +86,11 @@ with lib.hm.gvariant; {
       home = [ "<Super>e" ];
       www = [ "<Super>w" ];
     };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
-      {
-        binding = "<Super>Return";
-        command = "xterm";
-        name = "term";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>Return";
+      command = "xterm";
+      name = "term";
+    };
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
       power-button-action = "interactive";

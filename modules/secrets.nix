@@ -1,5 +1,7 @@
-let keys = "/nix/persist/etc/nixos/keys";
-in {
+let
+  keys = "/nix/persist/etc/nixos/keys";
+in
+{
   sops = {
     defaultSopsFile = ../secrets/system/default.yaml;
     defaultSopsFormat = "yaml";
@@ -14,6 +16,10 @@ in {
       "config.dae" = {
         format = "binary";
         sopsFile = ../secrets/system/config.dae;
+      };
+      rathole = {
+        format = "binary";
+        sopsFile = ../secrets/system/rathole.toml;
       };
     };
   };

@@ -1,4 +1,5 @@
-{ realname, email, ... }: {
+{ realname, email, ... }:
+{
   programs = {
     git-credential-oauth.enable = true;
     git = {
@@ -6,7 +7,7 @@
       userEmail = email;
       signing = {
         signByDefault = true;
-        key = "F6A3F09956C9F243";
+        key = "B7CFAB72643B5A6B";
       };
       enable = true;
       lfs.enable = true;

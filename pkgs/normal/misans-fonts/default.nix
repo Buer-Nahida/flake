@@ -1,4 +1,8 @@
-{ stdenvNoCC, fetchurl, unzip }:
+{
+  stdenvNoCC,
+  fetchurl,
+  unzip,
+}:
 stdenvNoCC.mkDerivation {
   pname = "misans-fonts";
   version = "1.0.0";

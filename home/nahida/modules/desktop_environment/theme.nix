@@ -1,4 +1,5 @@
-{ config, mypkgs, ... }: {
+{ config, mypkgs, ... }:
+{
   catppuccin = {
     accent = "sky";
     flavor = "mocha";
@@ -6,7 +7,10 @@
     kvantum.enable = true;
     gtk = {
       icon.enable = true;
-      tweaks = [ "normal" "float" ];
+      tweaks = [
+        "normal"
+        "float"
+      ];
     };
   };
   qt = {

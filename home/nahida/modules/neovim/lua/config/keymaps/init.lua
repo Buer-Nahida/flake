@@ -8,3 +8,7 @@ del({ "n", "x" }, "k")
 del({ "n", "x" }, "<Up>")
 del({ "n", "x" }, "j")
 del({ "n", "x" }, "<Down>")
+
+del("n", "<leader>l")
+
+del({ "n", "x" }, ";")

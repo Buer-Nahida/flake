@@ -1,11 +1,11 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   home.packages = with pkgs; [
     (fortune.overrideAttrs (_: {
       postInstall = ''
         ar x ${
           fetchurl {
-            url =
-              "http://ftp.cn.debian.org/debian/pool/main/f/fortune-zh/fortunes-zh_2.98_all.deb";
+            url = "http://ftp.cn.debian.org/debian/pool/main/f/fortune-zh/fortunes-zh_2.98_all.deb";
             hash = "sha256-IRxd3uWdCudM4By/0C98hxR0C64YNdVmHrIlTt1zkQU=";
           }
         }
@@ -56,14 +56,16 @@
         share = true;
       };
     };
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+      tmux.enableShellIntegration = true;
+    };
     yazi.enableZshIntegration = true;
   };
   catppuccin.fzf.enable = true;
   xdg.configFile = {
     "zsh/p10k.zsh".source = ./config/p10k.zsh;
-    "zsh/github_ssh_agent_autostart.zsh".source =
-      ./config/github_ssh_agent_autostart.zsh;
+    "zsh/github_ssh_agent_autostart.zsh".source = ./config/github_ssh_agent_autostart.zsh;
     "zsh/options.zsh".source = ./config/options.zsh;
     "zsh/plugins".source = ./config/plugins;
     "zsh/zstyle.zsh".source = ./config/zstyle.zsh;

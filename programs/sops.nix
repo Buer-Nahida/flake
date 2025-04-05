@@ -1,1 +1,4 @@
-{ pkgs, ... }: { environment.systemPackages = [ pkgs.sops ]; }
+{ pkgs, ... }:
+{
+  environment.systemPackages = [ pkgs.sops ];
+}

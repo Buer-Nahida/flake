@@ -1,3 +1,5 @@
+output "HDMI-A-1" { mode "2560x1440@100.000"; }
+
 environment {
     DISPLAY ":0"
     QT_IM_MODULE "fcitx"
@@ -69,8 +71,10 @@ binds {
     Mod+W      { spawn "firefox-nightly"; }
     Mod+E      { spawn "nautilus"; }
 
-    Mod+Escape       { spawn "~/.config/niri/scripts/translate -p"; }
-    Mod+Shift+Escape { spawn "~/.config/niri/scripts/translate"; }
+    Mod+Escape       { spawn "~/.config/niri/scripts/translate.sh -p"; }
+    Mod+Shift+Escape { spawn "~/.config/niri/scripts/translate.sh"; }
+
+    Mod+Backslash { spawn "sh" "-c" "pkill .Bi2O3-wrapped || Bi2O3"; }
 
     Mod+Alt+K            { spawn "amixer" "-Mq" "set" "Master,0" "1%+"; }
     XF86AudioRaiseVolume { spawn "amixer" "-Mq" "set" "Master,0" "1%+"; }

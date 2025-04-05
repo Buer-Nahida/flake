@@ -1,6 +1,6 @@
 {
-  services.displayManager.sddm = {
+  services.xserver.displayManager.gdm = {
     enable = true;
-    wayland.enable = true;
+    autoSuspend = false;
   };
 }
